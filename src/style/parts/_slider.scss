@@ -1,0 +1,20 @@
+.top-slider{
+  flex-basis: 50%;
+  .top-slider_wrapper{
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 9px;
+    padding: 32px;
+  }
+  .title{
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 800;
+    margin-bottom: 26px;
+  }
+  .desc{
+    font-size: 16px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #6B6B6B;
+  }
+}

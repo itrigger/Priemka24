@@ -1,0 +1,18 @@
+@mixin pseudo($img, $w, $h, $l:0, $t:0, $r:null){
+  content: "";
+  display: block;
+  position: absolute;
+  background-size: contain;
+  background-position: 0 0;
+  background-image: url("/img/#{$img}");
+  background-repeat: no-repeat;
+  width: #{$w}px;
+  height: #{$h}px;
+  top: #{$t}px;
+  @if $l != null{
+    left: #{$l}px;
+  }
+  @if $r != null{
+    right: #{$r}px;
+  }
+}

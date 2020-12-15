@@ -1,0 +1,116 @@
+header.header{
+  padding-top: 40px;
+}
+.header .logo{
+  display: block;
+  width: 290px;
+  height: 70px;
+  background: url("/img/logo.svg") 0 0 no-repeat;
+  background-size: contain;
+  grid-column: 1 / span 4;
+  margin-left: 19px;
+}
+.top-nav{
+  grid-column-end: -4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    li{
+      margin-left: 27px;
+    }
+  }
+}
+.ico-map{
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: $black;
+  font-size: 12px;
+  line-height: 18px;
+  padding-left: 29px;
+  &:after{
+    @include pseudo("ico-map.svg",18,24,0,-4);
+  }
+}
+.ico-calc{
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: $black;
+  font-size: 12px;
+  line-height: 18px;
+  padding-left: 29px;
+  &:after{
+    @include pseudo("ico-calc.svg",25,25,0,-4);
+  }
+}
+.ico-pay{
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: $black;
+  font-size: 12px;
+  line-height: 18px;
+  padding-left: 29px;
+  &:after{
+    @include pseudo("ico-credit_card.svg",24,24,0,-4);
+  }
+}
+
+.top-contacts{
+  grid-column-end: -1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 45px;
+  position: relative;
+  a{
+    margin-left: 13px;
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+  &:after{
+    @include pseudo("line_m.svg",2,12,15,28);
+  }
+}
+.ico-wt{
+  display: block;
+  position: relative;
+  font-weight: 700;
+  text-decoration: none;
+  color: $black;
+  font-size: 14px;
+  padding-left: 29px;
+  &:after{
+    @include pseudo("ico-wt.svg",21,20,0,-4);
+  }
+}
+.ico-vb{
+  display: block;
+  position: relative;
+  font-weight: 700;
+  text-decoration: none;
+  color: $black;
+  font-size: 14px;
+  padding-left: 28px;
+  &:after{
+    @include pseudo("ico-vb.svg",20,20,0,-4);
+  }
+}
+.top-phone{
+  padding-left: 46px;
+  a{
+    color: $black;
+    font-weight: 600;
+    font-size: 19px;
+    text-decoration: none;
+  }
+}

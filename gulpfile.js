@@ -20,7 +20,9 @@ var path = {
         css: 'build/css/',
         img: 'build/img/',
         fonts: 'build/fonts/',
-        libs: 'build/libs/'
+        libs: 'build/libs/',
+        pwa: 'build/',
+        manifest: 'build/'
     },
     src: {
         html: 'src/*.html',
@@ -28,7 +30,9 @@ var path = {
         style: 'src/style/main.scss',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*',
-        libs: 'src/libs/**/*.*'
+        libs: 'src/libs/**/*.*',
+        pwa: 'src/*.js',
+        manifest: 'src/manifest.json',
     },
     watch: {
         html: 'src/**/*.html',
@@ -89,6 +93,17 @@ gulp.task('html:build', function () {
         .pipe(version(config.version))              // добавление версий css и js
         .pipe(gulp.dest(path.build.html))           // выкладывание готовых файлов
         .pipe(webserver.reload({ stream: true }));  // перезагрузка сервера
+});
+
+// pwa
+gulp.task('pwa:build', function () {
+    return gulp.src(path.src.pwa)
+        .pipe(gulp.dest(path.build.pwa));
+});
+// manifest
+gulp.task('manifest:build', function () {
+    return gulp.src(path.src.manifest)
+        .pipe(gulp.dest(path.build.manifest));
 });
 
 // сбор стилей
@@ -166,7 +181,9 @@ gulp.task('build',
             'js:build',
             'fonts:build',
             'image:build',
-            'libs:build'
+            'libs:build',
+            'pwa:build',
+            'manifest:build'
         )
     )
 );
