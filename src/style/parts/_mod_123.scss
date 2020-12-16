@@ -1,0 +1,59 @@
+.module-123{
+  margin-top: 80px;
+  .head{
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 800;
+  }
+  .block1{
+    padding-right: 60px;
+    position: relative;
+  }
+  .block2{
+    padding-left: 35px;
+    padding-right: 35px;
+    position: relative;
+  }
+  .block3{
+    padding-left: 55px;
+    position: relative;
+  }
+  .pic-1{
+    width: 292px;
+    height: 179px;
+    background: url("/img/camera.svg") center bottom no-repeat;
+  }
+  .pic-2{
+    width: 292px;
+    height: 179px;
+    background: url("/img/scale.svg") center bottom no-repeat;
+  }
+  .pic-3{
+    width: 292px;
+    height: 179px;
+    background: url("/img/card.svg") center bottom no-repeat;
+  }
+  .heading{
+    margin-top: 31px;
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 800;
+  }
+  .desc{
+    font-size: 14px;
+    line-height: 18px;
+    color: #555;
+    margin-bottom: 80px;
+    b{
+      font-weight: 800;
+    }
+  }
+  .btn-w{
+    position: absolute;
+    bottom: 0;
+  }
+  .btn{
+    width: 162px;
+  }
+}

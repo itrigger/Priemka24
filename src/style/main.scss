@@ -4,11 +4,18 @@
 body{
   font-family: "Open Sans", sans-serif;
   color: $black;
-  background: url("/img/temp.jpg") center 0 no-repeat;
+  background: url("/img/temp.jpg") center 0 no-repeat $body-bg;
+  & *{
+    box-sizing: border-box;
+  }
 }
 
 @import "parts/_utils";
 @import "parts/_grid";
+@import "parts/_buttons";
 @import "parts/_header";
 @import "parts/_cards";
 @import "parts/_slider";
+@import "parts/_mod_howto";
+@import "parts/_mod_123";
+@import "parts/_mod_getprice";

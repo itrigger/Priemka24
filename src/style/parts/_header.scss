@@ -3,12 +3,12 @@ header.header{
 }
 .header .logo{
   display: block;
-  width: 290px;
-  height: 70px;
+  width: 285px;
+  height: 91px;
   background: url("/img/logo.svg") 0 0 no-repeat;
   background-size: contain;
   grid-column: 1 / span 4;
-  margin-left: 19px;
+  margin-left: 5px;
 }
 .top-nav{
   grid-column-end: -4;
@@ -78,7 +78,7 @@ header.header{
     }
   }
   &:after{
-    @include pseudo("line_m.svg",2,12,15,28);
+    @include pseudo("line_m.svg",2,12,15,40);
   }
 }
 .ico-wt{
@@ -107,10 +107,12 @@ header.header{
 }
 .top-phone{
   padding-left: 46px;
+  position: relative;
+  top: -17px;
   a{
     color: $black;
     font-weight: 600;
-    font-size: 19px;
+    font-size: 18px;
     text-decoration: none;
   }
 }
