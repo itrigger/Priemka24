@@ -20,3 +20,60 @@
   }
 }
 
+.mod-blog-r1{
+  background: black;
+  color: #fff;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  padding: 26px 26px 30px;
+  position: relative;
+  .pic{
+    background: url("/img/chel.png") 0 0 no-repeat;
+    width: 169px;
+    height: 201px;
+    position: relative;
+    left: 50%;
+    margin-left: -85px;
+    top: -102px;
+    margin-bottom: -82px;
+  }
+  .head{
+    font-size: 23px;
+    line-height: 23px;
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+  .desc{
+    font-size: 13px;
+    line-height: 13px;
+    padding-right: 40px;
+  }
+  .arr{
+    position: absolute;
+    right: 15px;
+    bottom: 30px;
+    width: 35px;
+    height: 35px;
+    background: url("/img/short_right.svg") 0 0 no-repeat;
+    background-size: contain;
+  }
+}
+
+.mod-blog-rb{
+  padding: 20px 41px 23px 31px;
+  background: #555555;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  .head{
+    color: #F0CB07;
+    font-size: 23px;
+    line-height: 24px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .desc{
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
