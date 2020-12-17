@@ -1,0 +1,60 @@
+.mod-black{
+  background: black;
+  color: #fff;
+  padding-top: 52px;
+  padding-bottom: 62px;
+  font-size: 14px;
+  line-height: 18px;
+  .name{
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 800;
+    span{
+      display: block;
+    }
+  }
+  .desc{
+    font-size: 16px;
+    line-height: 30px;
+    margin-top: 25px;
+  }
+  .col-3{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+  }
+  .ico-map{
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  a{
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.ico-mail{
+  position: relative;
+  padding-left: 29px;
+  &:after{
+    @include pseudo("ico-mail.svg",29,28,-5,-4);
+  }
+}
+
+.ico-metro{
+  position: relative;
+  padding-left: 29px;
+  &:after{
+    @include pseudo("ico-metro.svg",25,30,-5,-4);
+  }
+}
+
+.ico-tel{
+  position: relative;
+  padding-left: 29px;
+  &:after{
+    @include pseudo("phone.svg",25,25,-5,-4);
+  }
+}
