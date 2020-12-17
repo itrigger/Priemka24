@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="calculator" id="main-page--calculator">
+                <div class="els-header"> Калькулятор
+                    <div class="spinner loader">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                    <div class="loading_text"></div>
+                </div>
+                <div class="flex els-body flex-column">
+                    <div class="els-row els-row-1" data-id="1">
+                        <div class="el-wrap">
+                            <select class="el-type el-type-1" name="el-type">
+                                <option disabled hidden selected value="">Выберите тип элемента</option>
+                            </select>
+                        </div>
+                        <div class="el-wrap">
+                            <select class="el-name el-name-1" name="el-name">
+                                <option disabled hidden selected value="">Наименование</option>
+                            </select>
+                        </div>
+                        <div class="el-wrap radio-group">
+                            <div class="itemprice"></div>
+                            <!--<input checked id="row1_1" name="el-condition" type="radio"><label for="row1_1">Б/у</label>
+                            <input id="row1_2" name="el-condition" type="radio"><label for="row1_2">Новый</label>-->
+                        </div>
+                        <div class="el-wrap labeled-input">
+                            <label>Кол.
+                                <input placeholder="" type="text" value="1" class="inputCount inputCount-1"/> <span
+                                        class="typeOfCount typeOfCount-1">кг.</span>
+                            </label>
+                        </div>
+                        <div class="el-wrap labeled-input input-dark to-right">
+                            <label>Сумма</label>
+                            <div class="row-total row-total-1"><span>0</span> ₽</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="els-footer">
+                    <div class="el-add-row-btn">
+                        <div class="btn-plus"></div>
+                        Добавить позицию
+                    </div>
+                    <div class="els-total-price">
+                        <span class="yellow-rounded">Итого:</span>
+                        <div class="els-total-price-num" id="els-total-price-num">
+                            <span>0</span> ₽
+                        </div>
+                    </div>
+                    <div class="send-btn-wrapper">
+                        <a class="btn btn-black" href="javascript:void(0);">Продать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="calc_gp_1"></div>
+    </div>
+</div>

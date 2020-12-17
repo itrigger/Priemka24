@@ -64,6 +64,7 @@ var config = {
 /* подключаем gulp и плагины */
 var gulp = require('gulp'),                                 // подключаем Gulp
     webserver = require('browser-sync'),                    // сервер для работы и автоматического обновления страниц
+    sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),                      // модуль для отслеживания ошибок
     rigger = require('gulp-rigger'),                        // модуль для импорта содержимого одного файла в другой
     sass = require('gulp-sass'),                            // модуль для компиляции SASS (SCSS) в CSS
@@ -76,7 +77,10 @@ var gulp = require('gulp'),                                 // подключа�
     pngquant = require('imagemin-pngquant'),                // плагин для сжатия png
     rimraf = require('gulp-rimraf'),                        // плагин для удаления файлов и каталогов
     version = require('gulp-version-number'),               // плагин для добавлении версий css и js файлов
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    babel = require('gulp-babel'),
+    webpack = require('webpack-stream'),
+    terser = require('gulp-terser');
 
 /* задачи */
 
@@ -126,9 +130,19 @@ gulp.task('js:build', function () {
     return gulp.src(path.src.js)                    // получим файл main.js
         .pipe(plumber())                            // для отслеживания ошибок
         .pipe(rigger())                             // импортируем все указанные файлы в main.js
+        .pipe(webpack({
+            mode: 'development',
+            output: {filename: 'main.js'}
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(babel({
+            presets: [ '@babel/env' ]
+        }))
+        .pipe(terser())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(path.build.js))
         .pipe(rename({ suffix: '.min' }))
-        .pipe(uglify())                             // минимизируем js
+        //.pipe(uglify())                             // минимизируем js
         .pipe(gulp.dest(path.build.js))             // положим готовый файл
         .pipe(webserver.reload({ stream: true }));  // перезагрузим сервер
 });

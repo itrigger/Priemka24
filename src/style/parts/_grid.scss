@@ -8,6 +8,7 @@
   max-width: 1120px;
   grid-gap: 0 20px;
   margin: 0 auto;
+  position: relative;
 }
 .col-1{grid-column: span 1;}
 .col-2{grid-column: span 2;}
@@ -23,3 +24,10 @@
 .col-12{grid-column: span 12;}
 
 .col-to-end{grid-column-end: -1;}
+
+.row-2{
+  grid-row: 1 / span 2;
+}
+.row-2-2{
+  grid-row: 2 / span 1;
+}

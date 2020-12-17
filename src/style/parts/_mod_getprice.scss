@@ -1,5 +1,10 @@
 .mod_getprice{
   margin-top: 115px;
+  background: #fff;
+  padding-bottom: 118px;
+  .row{
+    position: relative;
+  }
   .heading{
     margin-top: 90px;
     margin-bottom: 22px;
@@ -14,7 +19,89 @@
     margin-bottom: 24px;
   }
   a.btn{
-    padding-left: 75px;
-    padding-right: 75px;
+    padding-left: 85px;
+    padding-right: 65px;
+    &:before{
+      left: 53px;
+      top: 11px;
+    }
+  }
+  .ded{
+    position: relative;
+    top: -88px;
+  }
+  .gp1{
+    width: 69px;
+    height: 67px;
+    position: absolute;
+    left: -23px;
+    top: 144px;
+    background: url("/img/gp1.svg") 0 0 no-repeat;
+    background-size: contain;
+  }
+  .gp2{
+    width: 45px;
+    height: 64px;
+    position: absolute;
+    left: 23px;
+    top: 27px;
+    background: url("/img/gp2.svg") 0 0 no-repeat;
+    background-size: contain;
+  }
+  .gp3{
+    width: 45px;
+    height: 102px;
+    position: absolute;
+    left: 373px;
+    top: -75px;
+    background: url("/img/gp3.svg") 0 0 no-repeat;
+    background-size: contain;
+  }
+  .gp4{
+    width: 63px;
+    height: 68px;
+    position: absolute;
+    left: 401px;
+    top: 0;
+    background: url("/img/gp4.svg") 0 0 no-repeat;
+    background-size: contain;
+  }
+  .gp5{
+    width: 30px;
+    height: 61px;
+    position: absolute;
+    left: 663px;
+    top: -37px;
+    background: url("/img/gp5.svg") 0 0 no-repeat;
+    background-size: contain;
+  }
+  .gp6{
+    width: 126px;
+    height: 126px;
+    position: absolute;
+    right: -40px;
+    top: -51px;
+    background: url("/img/gp6.svg") 0 0 no-repeat;
+    background-size: contain;
+  }
+  .gp7{
+    width: 83px;
+    height: 88px;
+    position: absolute;
+    right: 53px;
+    top: 97px;
+    background: url("/img/gp4.svg") 0 0 no-repeat;
+    background-size: contain;
+    transform: rotate(50deg);
+  }
+  .gp8{
+    width: 83px;
+    height: 98px;
+    position: absolute;
+    right: -10px;
+    top: 375px;
+    background: url("/img/gp4.svg") 0 0 no-repeat;
+    background-size: contain;
+    transform: rotate(44deg);
   }
 }

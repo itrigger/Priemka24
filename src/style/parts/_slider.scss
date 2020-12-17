@@ -51,9 +51,11 @@
   background: url("/img/circle_right.svg") 0 0 no-repeat;
   width: 24px;
   height: 24px;
+  right: 0;
   &.swiper-button-disabled{
     background: url("/img/circle_left.svg") 0 0 no-repeat;
     transform: rotate(180deg);
+    pointer-events: auto;
   }
   &:after{
     display: none;
@@ -63,10 +65,12 @@
   background: url("/img/circle_right.svg") 0 0 no-repeat;
   width: 24px;
   height: 24px;
+  left: 0;
   transform: rotate(180deg);
   &.swiper-button-disabled{
     background: url("/img/circle_left.svg") 0 0 no-repeat;
     transform: rotate(0deg);
+    pointer-events: auto;
   }
   &:after{
     display: none;

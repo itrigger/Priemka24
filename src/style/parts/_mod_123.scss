@@ -8,11 +8,17 @@
   .block1{
     padding-right: 60px;
     position: relative;
+    &:after{
+      @include pseudo("switch-vertical.svg", 50, 50, null, 110, 0);
+    }
   }
   .block2{
     padding-left: 35px;
     padding-right: 35px;
     position: relative;
+    &:after{
+      @include pseudo("switch-vertical.svg", 50, 50, null, 110, -10);
+    }
   }
   .block3{
     padding-left: 55px;
