@@ -5,7 +5,8 @@ const FILES = [
   //'/404.html',
   '/css/main.min.css',
 
-  '/vednor/js/script.js',
+  '/libs/js/jquery-3.5.1.min.js',
+  '/libs/js/swiper-bundle.min.js',
   '/server.js',
   '/service-worker.js',
   '/sw-register.js',

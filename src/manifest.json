@@ -1,13 +1,13 @@
 {
-  "name": "HTML Template",
-  "short_name": "MHST",
+  "name": "Priemka24",
+  "short_name": "Priemka24",
   "scope": "/",
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#eee",
-  "theme_color": "#222",
-  "description": "Modern HTML Starter Template",
+  "background_color": "#EDEDED",
+  "theme_color": "#F0CB07",
+  "description": "Приём радиолома и приборов",
   "icons": [
     {
       "src": "./img/icons/64x64.png",

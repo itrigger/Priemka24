@@ -1,0 +1,57 @@
+.mod_quest{
+  padding-top: 78px;
+  .left{
+    display: flex;
+    flex-direction: row;
+    .text{
+      padding-left: 37px;
+      .head{
+        font-size: 23px;
+        line-height: 22px;
+        font-weight: 800;
+      }
+      .desc{
+        font-size: 16px;
+        line-height: 30px;
+        color: #555;
+        margin-top: 17px;
+        span{
+          display: block;
+        }
+      }
+    }
+  }
+  .camera{
+    width: 255px;
+    min-width: 255px;
+    height: 205px;
+    background: url("/img/quest_camera.svg") 0 0 no-repeat;
+    background-size: contain;
+  }
+  .right{
+    .head{
+      font-size: 45px;
+      line-height: 50px;
+    }
+    .desc{
+      font-size: 16px;
+      line-height: 30px;
+      color: #555;
+      margin-top: 11px;
+      span{
+        display: block;
+      }
+    }
+    a.btn{
+      padding-left: 75px;
+      padding-right: 50px;
+      margin-top: 35px;
+      &:first-child{
+        margin-right: 30px;
+      }
+      &:before{
+        left: 30px;
+      }
+    }
+  }
+}

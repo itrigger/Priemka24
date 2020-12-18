@@ -4,6 +4,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   grid-gap: 37px 0;
+  width: 100%;
   .card{
     display: flex;
     flex-basis: 25%;
@@ -33,8 +34,13 @@
   margin-top: 32px;
   display: flex;
   flex-direction: row;
-  grid-gap: 0 25px;
   margin-bottom: 8px;
+  a{
+    margin-right: 25px;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
   .swiper-pagination{
     position: relative;
   }
