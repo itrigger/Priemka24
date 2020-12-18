@@ -1,0 +1,16 @@
+input[type=text],
+input[type=email],
+input[type=tel]
+{
+  height: 44px;
+  border: 1px solid #BDBDBD;
+  border-radius: 3px;
+  background: #EDEDED;
+}
+
+label{
+  font-size: 14px;
+  line-height: 18px;
+  color: #828282;
+  margin-bottom: 20px;
+}

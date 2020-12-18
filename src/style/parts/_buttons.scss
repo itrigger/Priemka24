@@ -88,3 +88,22 @@
     @include pseudo("ico-tel.svg", 21, 20, 21, 11);
   }
 }
+
+.btn-ico-arrow{
+  position: relative;
+  &:before {
+    @include pseudo("short_right2.svg", 20, 18, 21, 11);
+  }
+}
+
+.btn-submit-arrow{
+  background: url("/img/short_right2.svg") 37px 13px no-repeat  $yellow;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding-left: 70px;
+  margin-top: 7px;
+  &:hover{
+    background-color: $yellowHover;
+    transition: 0.2s background-color;
+  }
+}

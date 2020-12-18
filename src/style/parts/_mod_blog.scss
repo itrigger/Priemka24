@@ -77,3 +77,29 @@
     line-height: 18px;
   }
 }
+
+.mod-blog-r2{
+  padding-left: 38px;
+  form{
+    height: 100%;
+  }
+  input[type=text],
+  input[type=email],
+  input[type=tel]
+  {
+    width: 222px;
+  }
+  label{
+    margin-bottom: 20px;
+    div{
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.flex-col{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-between;
+}

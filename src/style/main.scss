@@ -4,6 +4,7 @@
 body{
   font-family: "Open Sans", sans-serif;
   color: $black;
+  background: $body-bg;
   background: url("/img/temp.jpg") center 0 no-repeat $body-bg;
   & *{
     box-sizing: border-box;
@@ -22,3 +23,6 @@ body{
 @import "parts/_calculator";
 @import "parts/_mod_blog";
 @import "parts/_mod_black";
+@import "parts/_form";
+@import "parts/_mod_map";
+@import "parts/_mod_quest";

@@ -1,0 +1,59 @@
+<div class="mod-map">
+    <div class="map_bubble">
+        <div class="pic"><img alt="" src="/img/map.jpg"></div>
+    </div>
+<div id="map"></div>
+</div>
+<script>
+    var sites = [
+        ['Москва', 55.5797031, 37.5985269, 1, '<div class="pic"><img alt="" src="/img/map.jpg"></div>'],
+  ];
+    var map;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 18,
+            center: new google.maps.LatLng(55.5797031, 37.5985269),
+            mapTypeId: 'terrain',
+            disableDefaultUI: true,
+            // add back fullscreen, streetview, zoom
+            zoomControl: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_TOP
+            },
+            fullscreenControl: true
+        });
+        var image = "http://localhost:3000/img/marker.png";
+
+        var eqfeed_callback = function eqfeed_callback(sites) {
+            var _loop = function _loop(i) {
+                var latLng = new google.maps.LatLng(sites[i][1], sites[i][2]);
+                var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    icon: image
+                });
+
+                marker.addListener('click', function () {
+                    jQuery('.map_bubble').html(sites[i][4]);
+                        map.setCenter({
+                        lat: sites[i][1],
+                        lng: sites[i][2]
+                    });
+                    map.setZoom(18);
+                });
+            };
+
+            for (var i = 0; i < sites.length; i++) {
+                _loop(i);
+            }
+        };
+
+        eqfeed_callback(sites);
+
+
+    }
+</script>
+<script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR_HUJMe8wk2KiPMdWal1J02B0N_0MSVU&callback=initMap">
+</script>
