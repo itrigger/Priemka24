@@ -35,6 +35,10 @@
   color: #fff;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  &:hover{
+    background-color: rgba(#000,0.9);
+    transition: 0.2s background-color;
+  }
 }
 .btn-green{
   background: rgb(21,222,65);
@@ -42,6 +46,11 @@
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   color: #fff;
+  &:hover{
+    background: rgb(21,222,65);
+    background: linear-gradient(90deg, rgba(21,222,65,.8) 0%, rgba(0,173,152,.8) 100%);
+    transition: 0.2s background;
+  }
 }
 .btn-transparent{
   border: 1px solid $black;
@@ -105,5 +114,98 @@
   &:hover{
     background-color: $yellowHover;
     transition: 0.2s background-color;
+  }
+}
+
+.btn-call-me-w{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.btn-call-me{
+  width: 20px;
+  height: 20px;
+  background: url("/img/btn_callme.svg") 0 0 no-repeat;
+  background-size: contain;
+  display: block;
+}
+
+
+.btn-burger{
+  position: relative;
+  width: 25px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  span {
+    width: 25px;
+    height: 4px;
+    border-radius: 16px;
+    background: #000;
+    display: block;
+    transition: 0.3s all;
+  }
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 4px;
+    border-radius: 16px;
+    background: #000;
+    transition: 0.3s all;
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 25px;
+    height: 4px;
+    border-radius: 16px;
+    background: #000;
+    transition: 0.3s all;
+  }
+}
+.btn-burger.active:before {
+  transform: rotate(45deg);
+  top: 6px;
+  transition: 0.3s all;
+}
+.btn-burger.active:after {
+  transform: rotate(-45deg);
+  bottom: 6px;
+  transition: 0.3s all;
+}
+.btn-burger.active span {
+  opacity: 0;
+  transition: 0.3s all;
+}
+
+.btn-uniq-cat-desc{
+  position: relative;
+  padding-left: 55px;
+  padding-right: 55px;
+  &:before {
+    @include pseudo("ico-desc-cat.svg", 26, 25, 21, 11);
+  }
+  &:after {
+    @include pseudo("ico-desc-cat2.svg", 26, 25, null, 11, 21);
+  }
+}
+
+.btn-uniq-cat-mobile{
+  position: relative;
+  padding-left: 90px;
+  padding-right: 90px;
+  &:before {
+    @include pseudo("ico_mob_btn_catalog.svg", 56, 32, 13, 7);
+  }
+  &:after {
+    @include pseudo("ico_mob_btn_catalog2.svg", 53, 31, null, 7, 13);
   }
 }

@@ -1,36 +1,43 @@
-.mod_getprice{
+.mod_getprice {
   margin-top: 115px;
   background: #fff;
   padding-bottom: 118px;
-  .row{
+
+  .row {
     position: relative;
   }
-  .heading{
+
+  .heading {
     margin-top: 90px;
     margin-bottom: 22px;
     font-weight: 800;
     font-size: 36px;
     line-height: 48px;
   }
-  .desc{
+
+  .desc {
     font-size: 16px;
     line-height: 30px;
     max-width: 320px;
     margin-bottom: 24px;
   }
-  a.btn{
+
+  a.btn {
     padding-left: 85px;
     padding-right: 65px;
-    &:before{
+
+    &:before {
       left: 53px;
       top: 11px;
     }
   }
-  .ded{
+
+  .ded {
     position: relative;
     top: -88px;
   }
-  .gp1{
+
+  .gp1 {
     width: 69px;
     height: 67px;
     position: absolute;
@@ -39,7 +46,8 @@
     background: url("/img/gp1.svg") 0 0 no-repeat;
     background-size: contain;
   }
-  .gp2{
+
+  .gp2 {
     width: 45px;
     height: 64px;
     position: absolute;
@@ -48,7 +56,8 @@
     background: url("/img/gp2.svg") 0 0 no-repeat;
     background-size: contain;
   }
-  .gp3{
+
+  .gp3 {
     width: 45px;
     height: 102px;
     position: absolute;
@@ -57,7 +66,8 @@
     background: url("/img/gp3.svg") 0 0 no-repeat;
     background-size: contain;
   }
-  .gp4{
+
+  .gp4 {
     width: 63px;
     height: 68px;
     position: absolute;
@@ -66,7 +76,8 @@
     background: url("/img/gp4.svg") 0 0 no-repeat;
     background-size: contain;
   }
-  .gp5{
+
+  .gp5 {
     width: 30px;
     height: 61px;
     position: absolute;
@@ -75,7 +86,8 @@
     background: url("/img/gp5.svg") 0 0 no-repeat;
     background-size: contain;
   }
-  .gp6{
+
+  .gp6 {
     width: 126px;
     height: 126px;
     position: absolute;
@@ -84,7 +96,8 @@
     background: url("/img/gp6.svg") 0 0 no-repeat;
     background-size: contain;
   }
-  .gp7{
+
+  .gp7 {
     width: 83px;
     height: 88px;
     position: absolute;
@@ -94,7 +107,8 @@
     background-size: contain;
     transform: rotate(50deg);
   }
-  .gp8{
+
+  .gp8 {
     width: 83px;
     height: 98px;
     position: absolute;
@@ -103,5 +117,19 @@
     background: url("/img/gp4.svg") 0 0 no-repeat;
     background-size: contain;
     transform: rotate(44deg);
+  }
+}
+
+@media (max-width: 1180px) {
+  .mod_getprice .gp1 {display: none;}
+  .mod_getprice .gp2 {display: none;}
+  .mod_getprice .gp3 {display: none;}
+  .mod_getprice .gp4 {display: none;}
+  .mod_getprice .gp5 {display: none;}
+  .mod_getprice .gp6 {display: none;}
+  .mod_getprice .gp7 {display: none;}
+  .mod_getprice .gp8 {display: none;}
+  .mod_getprice{
+    display: none;
   }
 }

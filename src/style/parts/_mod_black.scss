@@ -61,3 +61,9 @@
     @include pseudo("phone.svg",25,25,-5,-4);
   }
 }
+
+@media (max-width: 1180px){
+  .mod-black{
+    display: none;
+  }
+}

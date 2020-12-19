@@ -1,8 +1,21 @@
 <div class="mod-map">
     <div class="map_bubble">
-        <div class="pic"><img alt="" src="/img/map.jpg"></div>
+        <div class="close"></div>
+        <div class="wrapper"></div>
     </div>
 <div id="map"></div>
+</div>
+<div class="container mobile maninblack">
+    <div class="row">
+        <div class="xs-col-4 mod-blog-r1 ">
+            <div class="pic"></div>
+            <div class="head">Отвечу на&nbsp;любые вопросы</div>
+            <div class="desc">
+                Оставьте заявку и я вам позвоню как можно скорее. Гарантирую анонимность.
+            </div>
+            <div class="arr"></div>
+        </div>
+    </div>
 </div>
 <script>
     var sites = [
@@ -35,8 +48,8 @@
                 });
 
                 marker.addListener('click', function () {
-                    jQuery('.map_bubble').html(sites[i][4]);
-                        map.setCenter({
+                    jQuery('.map_bubble .wrapper').html(sites[i][4]).parent().addClass('open');
+                    map.setCenter({
                         lat: sites[i][1],
                         lng: sites[i][2]
                     });
@@ -50,9 +63,9 @@
         };
 
         eqfeed_callback(sites);
-
-
     }
+
+
 </script>
 <script defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR_HUJMe8wk2KiPMdWal1J02B0N_0MSVU&callback=initMap">
