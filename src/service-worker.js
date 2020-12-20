@@ -1,22 +1,20 @@
 const NAME = 'Priemka-0.2';
 
 const FILES = [
-  '/index.html',
+  //'/wp-content/themes/priemka/index.php',
   //'/404.html',
-  '/css/main.min.css',
+  '/wp-content/themes/priemka/assets/css/main.min.css',
+  '/wp-content/themes/priemka/assets/libs/js/swiper-bundle.min.js',
+  '/wp-content/themes/priemka/server.js',
+  '/wp-content/themes/priemka/service-worker.js',
+  '/wp-content/themes/priemka/sw-register.js',
+  '/wp-content/themes/priemka/assets/js/main.min.js',
 
-  '/libs/js/jquery-3.5.1.min.js',
-  '/libs/js/swiper-bundle.min.js',
-  '/server.js',
-  '/service-worker.js',
-  '/sw-register.js',
-  '/js/main.min.js',
-
-  '/img/icons/64x64.png',
-  '/img/icons/128x128.png',
-  '/img/icons/152x152.png',
-  '/img/icons/256x256.png',
-  '/img/icons/512x512.png'
+  '/wp-content/themes/priemka/assets/img/icons/64x64.png',
+  '/wp-content/themes/priemka/assets/img/icons/128x128.png',
+  '/wp-content/themes/priemka/assets/img/icons/152x152.png',
+  '/wp-content/themes/priemka/assets/img/icons/256x256.png',
+  '/wp-content/themes/priemka/assets/img/icons/512x512.png'
 ]
 
 self.addEventListener('install', (e) => {

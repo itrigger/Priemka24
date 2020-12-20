@@ -5,7 +5,7 @@ header.header{
   display: block;
   width: 285px;
   height: 91px;
-  background: url("/img/logo.svg") 0 0 no-repeat;
+  background: url("../img/logo.svg") 0 0 no-repeat;
   background-size: contain;
   grid-column: 1 / span 4;
   margin-left: 5px;
@@ -205,7 +205,7 @@ header.header{
   .header .logo{
     width: 154px;
     height: 46px;
-    background: url("/img/logo-mobile.svg") 0 0 no-repeat;
+    background: url("../img/logo-mobile.svg") 0 0 no-repeat;
     margin: 0 auto;
   }
   .top-nav, .top-contacts, .top-phone{

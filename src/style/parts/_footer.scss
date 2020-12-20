@@ -15,7 +15,7 @@ footer.footer{
     right: 0;
     top: 0;
     bottom: 0;
-    background: url(/img/pattern.png) 0 bottom repeat-x;
+    background: url("../img/pattern.png") 0 bottom repeat-x;
     opacity: 0.9;
     z-index: 0;
   }
@@ -69,7 +69,7 @@ footer.footer{
 .logo-bottom{
   width: 105px;
   height: 74px;
-  background: url("/img/logo-bottom.svg") 0 0 no-repeat;
+  background: url("../img/logo-bottom.svg") 0 0 no-repeat;
   background-size: contain;
 }
 .footer-socials{
@@ -86,21 +86,21 @@ footer.footer{
   display: block;
   width: 20px;
   height: 20px;
-  background: url("/img/ico-w-mail.svg") 0 0 no-repeat;
+  background: url("../img/ico-w-mail.svg") 0 0 no-repeat;
   background-size: contain;
 }
 .ico-w-wt{
   display: block;
   width: 20px;
   height: 20px;
-  background: url("/img/ico-w-wt.svg") 0 0 no-repeat;
+  background: url("../img/ico-w-wt.svg") 0 0 no-repeat;
   background-size: contain;
 }
 .ico-w-vb{
   display: block;
   width: 20px;
   height: 20px;
-  background: url("/img/ico-w-vb.svg") 0 0 no-repeat;
+  background: url("../img/ico-w-vb.svg") 0 0 no-repeat;
   background-size: contain;
 }
 

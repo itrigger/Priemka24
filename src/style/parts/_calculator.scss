@@ -21,7 +21,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background: url(/img/pattern.png) 0 bottom repeat-x;
+    background: url("../img/pattern.png") 0 bottom repeat-x;
     opacity: 0.9;
     z-index: 0;
   }
@@ -149,7 +149,7 @@
   line-height: 14px;
   left: -25px;
   top: 11px;
-  background: url("/img/btn_add.svg") 0 0 no-repeat;
+  background: url("../img/btn_add.svg") 0 0 no-repeat;
   background-size: contain;
 transform: rotate(45deg);
   width: 20px;
@@ -198,7 +198,7 @@ transform: rotate(45deg);
   width: 32px;
   height: 32px;
   display: flex;
-  background: url("/img/btn_add.svg");
+  background: url("../img/btn_add.svg");
   justify-content: center;
   align-items: center;
   border-radius: 5px;
@@ -242,7 +242,7 @@ transform: rotate(45deg);
   position: absolute;
   width: 146px;
   height: 179px;
-  background: url("/img/gp7.svg") 0 0 no-repeat;
+  background: url("../img/gp7.svg") 0 0 no-repeat;
   background-size: contain;
   left: 370px;
   bottom: -95px;

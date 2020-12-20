@@ -28,7 +28,7 @@
   padding: 26px 26px 30px;
   position: relative;
   .pic{
-    background: url("/img/chel.png") 0 0 no-repeat;
+    background: url("../img/chel.png") 0 0 no-repeat;
     width: 169px;
     height: 201px;
     position: relative;
@@ -54,7 +54,7 @@
     bottom: 30px;
     width: 35px;
     height: 35px;
-    background: url("/img/short_right.svg") 0 0 no-repeat;
+    background: url("../img/short_right.svg") 0 0 no-repeat;
     background-size: contain;
   }
 }
@@ -91,7 +91,8 @@
   }
   label{
     margin-bottom: 20px;
-    div{
+    &>span{
+      display: block;
       margin-bottom: 10px;
     }
   }

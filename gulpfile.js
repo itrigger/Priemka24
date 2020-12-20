@@ -131,7 +131,7 @@ gulp.task('js:build', function () {
         .pipe(plumber())                            // для отслеживания ошибок
         .pipe(rigger())                             // импортируем все указанные файлы в main.js
         .pipe(webpack({
-            mode: 'development',
+            mode: 'production',
             output: {filename: 'main.js'}
         }))
         .pipe(sourcemaps.init())
