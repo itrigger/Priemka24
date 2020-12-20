@@ -61,7 +61,7 @@ footer.footer{
     margin-top: 28px;
   }
   .copyright{
-    color: rgba(#fff, 0.5);
+    color: rgba(#fff, 1);
     font-size: 15px;
     line-height: 20px;
   }
@@ -102,4 +102,14 @@ footer.footer{
   height: 20px;
   background: url("/img/ico-w-vb.svg") 0 0 no-repeat;
   background-size: contain;
+}
+
+@media (max-width: 1180px){
+  footer.footer .footer-nav ul{
+    flex-direction: column;
+  }
+  footer.footer{
+    margin-top: -150px;
+    padding-top: 180px;
+  }
 }

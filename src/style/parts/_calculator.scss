@@ -266,6 +266,9 @@ transform: rotate(45deg);
       margin-right: 0;
     }
   }
+  .els-row .el-wrap.sw2{
+    margin-right: 0;
+  }
   .calculator select{
     width: 100%;
     margin-bottom: 15px;
@@ -286,6 +289,8 @@ transform: rotate(45deg);
   }
   .labeled-input.input-dark{
     margin-top: 10px;
+    margin-left: auto;
+    margin-right: 0;
   }
   .els-footer{
     flex-direction: row;
@@ -332,6 +337,9 @@ transform: rotate(45deg);
   .els-row{
     flex-direction: column;
   }
+  .sel-wrap{
+    width: 100%;
+  }
   .calculator{
     padding: 22px;
   }
@@ -348,6 +356,7 @@ transform: rotate(45deg);
   }
   .calculator .labeled-input{
     margin-left: 0;
+    align-self: flex-start;
     label{
       font-size: 15px;
     }
@@ -374,19 +383,25 @@ transform: rotate(45deg);
   .els-footer .els-total-price{
     margin-left: 0;
     margin-top: 10px;
+    align-items: baseline;
+    justify-content: flex-end;
   }
   .els-total-price-num{
     font-size: 20px;
   }
   .els-total-price-num span{
-    font-size: 26px;
+    font-size: 20px;
   }
   .send-btn-wrapper{
     margin-left: 0;
     margin-top: 15px;
+    text-align: center;
   }
   .send-btn-wrapper .btn{
     font-size: 16px;
+    min-width: 280px;
+    text-align: center;
+    justify-content: center;
   }
 }/*<660*/
 
@@ -501,4 +516,11 @@ transform: rotate(45deg);
 }
 .spinner {
   display: inline-block;
+}
+
+@media (max-width: 1180px){
+  #main-page--calculator{
+    top: 0;
+    margin-bottom: 0;
+  }
 }

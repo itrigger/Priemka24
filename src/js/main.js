@@ -20,6 +20,10 @@ $(document).ready(function () {
             },
             // when window width is >= 640px
             640: {
+                slidesPerView: 3,
+                spaceBetween: 20
+            },
+            1120: {
                 slidesPerView: 4,
                 spaceBetween: 20
             }
@@ -39,8 +43,17 @@ $(document).ready(function () {
         spaceBetween: 0,
         // Responsive breakpoints
         loop: true,
+        breakpoints: {
+            // when window width is >= 320px
+            320: {
+                autoHeight: true,
+            },
+            1180: {
+                autoHeight: false,
+            }
+        },
         autoplay: {
-            delay: 3000,
+            delay: 5000,
         },
         // Navigation arrows
         pagination: {
@@ -50,7 +63,9 @@ $(document).ready(function () {
     });
 
 
-
+    $('.map_bubble').on('click', '.close', function () {
+        $(this).parent().removeClass("open").find(".wrapper").html("");
+    })
 
     $('.btn-burger').on('click', function () {
         if ($(this).hasClass('active')) {
@@ -667,12 +682,12 @@ $(document).ready(function () {
         delete_notify();
 
         $(".els-body").append('<div class="els-row els-row-' + rowId + ' collapsed" data-id="' + rowId + '">\n' +
-            '        <div class="els-del"></div><div class="el-wrap ew1">\n' +
+            '        <div class="els-del"></div><div class="el-wrap ew1 sel-wrap">\n' +
             '          <select class="el-type" name="el-type" disabled>\n' +
             '            <option disabled hidden selected value="">Выберите тип элемента</option>\n' +
             '          </select>\n' +
             '        </div>\n' +
-            '        <div class="el-wrap ew2">\n' +
+            '        <div class="el-wrap ew2 sel-wrap">\n' +
             '          <select class="el-name" name="el-name" disabled>\n' +
             '            <option disabled hidden selected value="">Наименование</option>\n' +
             '          </select>\n' +
@@ -759,12 +774,12 @@ $(document).ready(function () {
                 delete_notify($errorInput);
                 rowsCount += 1;
                 $(".els-body").append('<div class="els-row els-row-' + rowsCount + ' collapsed" data-id="' + rowsCount + '">\n' +
-                    '        <div class="els-del"></div><div class="el-wrap ew1">\n' +
+                    '        <div class="els-del"></div><div class="el-wrap ew1 sel-wrap">\n' +
                     '          <select class="el-type" name="el-type" disabled>\n' +
                     '            <option disabled hidden selected value="">Выберите тип элемента</option>\n' +
                     '          </select>\n' +
                     '        </div>\n' +
-                    '        <div class="el-wrap ew2">\n' +
+                    '        <div class="el-wrap ew2 sel-wrap">\n' +
                     '          <select class="el-name" name="el-name" disabled>\n' +
                     '            <option disabled hidden selected value="">Наименование</option>\n' +
                     '          </select>\n' +

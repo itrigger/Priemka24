@@ -10,6 +10,7 @@
   margin: 0 auto;
   position: relative;
 }
+
 .col-1{grid-column: span 1;}
 .col-2{grid-column: span 2;}
 .col-3{grid-column: span 3;}
@@ -23,6 +24,7 @@
 .col-11{grid-column: span 11;}
 .col-12{grid-column: span 12;}
 
+
 .col-to-end{grid-column-end: -1;}
 
 .row-2{
@@ -33,4 +35,38 @@
 }
 .row-1-2{
   grid-row: 1 / span 1;
+}
+
+.mobile{
+  display: none !important;
+}
+
+@media (max-width: 1180px){
+  .mobile{
+    display: inherit !important;
+  }
+  .container{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .row{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1120px;
+    grid-gap: 10px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .xs-col-1{grid-column: span 1;}
+  .xs-col-2{grid-column: span 2;}
+  .xs-col-3{grid-column: span 3;}
+  .xs-col-4{grid-column: span 4;}
+  .xs-col-5{grid-column: span 5;}
+  .xs-col-6{grid-column: span 6;}
+  .xs-col-7{grid-column: span 7;}
+  .xs-col-8{grid-column: span 8;}
+  .xs-col-9{grid-column: span 9;}
+  .xs-col-10{grid-column: span 10;}
+  .xs-col-11{grid-column: span 11;}
+  .xs-col-12{grid-column: span 12;}
 }

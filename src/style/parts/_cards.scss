@@ -1,3 +1,6 @@
+.cards_w{
+  background: url("/img/pattern+.png") repeat;
+}
 .cards{
   margin-top: 33px;
   display: flex;
@@ -44,10 +47,51 @@
   .swiper-pagination{
     position: relative;
   }
+  .btn-ico-download{
+    padding-right: 14px;
+    padding-left: 40px;
+    &:before{
+      left: 17px;
+    }
+  }
 }
 
 .swiper-cards{
   .card{
     flex-basis: auto;
+  }
+}
+
+.card.mobile{
+  display: none;
+}
+
+@media (max-width: 1180px){
+  .card.mobile{
+    display: inherit;
+  }
+  .cards:first-child .card{
+    display: none;
+  }
+  .top-slider{
+    flex-basis: 100%;
+  }
+  .cards .card img{
+    max-width: 125px;
+  }
+  .cards-line2{
+    background: #EDEDED;
+    margin-left: -20px;
+    margin-right: -20px;
+    width: 100vw;
+    padding: 60px 20px 30px;
+    .btn-w{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  .cards + .cards{
+    margin-top: -40px;
   }
 }

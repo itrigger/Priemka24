@@ -11,6 +11,13 @@ body{
   }
 }
 
+@media (max-width: 1180px) {
+  body{
+    background: #fff;
+    padding-top: 100px;
+  }
+}
+
 @import "parts/_utils";
 @import "parts/_grid";
 @import "parts/_buttons";
