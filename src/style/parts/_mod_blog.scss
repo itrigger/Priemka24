@@ -1,5 +1,7 @@
 .mod-blog{
   margin-top:110px;
+  position: relative;
+  z-index: 101;
 }
 .mod-blog-l{
   background: #FFFFFF;
@@ -105,6 +107,24 @@
   //justify-content: space-between;
 }
 
+.gp_tranz2{
+    width: 137px;
+    height: 133px;
+    position: absolute;
+    right: -60px;
+    top: -115px;
+    background: url("../img/tranz2.svg") 0 0 no-repeat;
+    background-size: contain;
+}
+
+.simple_ul{
+  li{
+    font-size: 14px;
+    line-height: 18px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+}
 
 @media (max-width: 1180px){
   .mod-blog{

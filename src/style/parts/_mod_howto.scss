@@ -13,12 +13,13 @@
     background: #D2D2D2;
     padding-left: calc((100vw - 1120px)/2);
     height: 410px;
-    padding-top: 50px;
+    padding-top: 36px;
     position: relative;
   }
   .text{
     padding-right: 60px;
-    font-size: 16px;
+    font-size: 22px;
+    font-weight: 800;
     line-height: 30px;
   }
 }
@@ -42,8 +43,8 @@
   width: 67px;
   height: 105px;
   position: absolute;
-  right: 90px;
-  bottom: 90px;
+  right: 70px;
+  bottom: 0;
 }
 .sign_quest_2{
   background: url("../img/quest-white.svg") 0 0 no-repeat;
@@ -52,7 +53,7 @@
   height: 209px;
   position: absolute;
   left: 440px;
-  top: 60px;
+  top: 300px;
 }
 .sign_quest_3{
   background: url("../img/quest.svg") 0 0 no-repeat;
@@ -71,7 +72,7 @@
   height: 47px;
   position: absolute;
   left: 360px;
-  top: 27px;
+  top: 107px;
   opacity: 0.5;
   transform: rotate(-45deg);
 }
@@ -91,7 +92,7 @@
   height: 54px;
   position: absolute;
   right: 153px;
-  top: -38px;
+  top: -88px;
 }
 
 .mht-right{

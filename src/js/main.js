@@ -939,7 +939,7 @@ jQuery(document).ready(function () {
         function sayHi() {
             jQuery("select.el-type-1").removeClass("glow");
         }
-        setTimeout(sayHi, 5000);
+        setTimeout(sayHi, 4000);
         jQuery("select.el-type-1").val(dataval).prop('selected', true);
         jQuery("select.el-type-1").val(dataval).trigger('change');
     });
@@ -951,8 +951,7 @@ jQuery(document).ready(function () {
         }
         setTimeout(sayHi, 5000);
     });
+
+    var rellax = new Rellax('.rellax');
+
 });
-
-
-
-

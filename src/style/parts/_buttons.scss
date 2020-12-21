@@ -74,7 +74,7 @@
   position: relative;
   padding-left: 55px;
   &:before {
-    @include pseudo("ico-money.svg", 21, 21, 25, 13);
+    @include pseudo("ico-money.svg", 21, 21, 25, 11);
   }
 }
 .btn-ico-chat{

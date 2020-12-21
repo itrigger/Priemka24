@@ -42,10 +42,10 @@
       color: #999b9e;
     }
     &.glow{
-      -webkit-animation: glowing 1000ms infinite;
-      -moz-animation: glowing 1000ms infinite;
-      -o-animation: glowing 1000ms infinite;
-      animation: glowing 1000ms infinite;
+      -webkit-animation: glowing 600ms infinite;
+      -moz-animation: glowing 600ms infinite;
+      -o-animation: glowing 600ms infinite;
+      animation: glowing 600ms infinite;
     }
     &:focus, &:active{
       outline: none !important;
@@ -257,8 +257,8 @@ transform: rotate(45deg);
   background: url("../img/gp7.svg") 0 0 no-repeat;
   background-size: contain;
   left: 370px;
-  bottom: -95px;
-  z-index: 234;
+  bottom: 245px;
+  z-index: 100;
 }
 
 
@@ -339,31 +339,31 @@ transform: rotate(45deg);
 
 @-webkit-keyframes glowing {
   0% {
-    background-color: #0091b2;
-    -webkit-box-shadow: 0 0 3px #0091b2;
+    background-color: $yellow;
+    -webkit-box-shadow: 0 0 3px $yellow;
   }
   50% {
-    background-color: #21c7ed;
-    -webkit-box-shadow: 0 0 15px #21c7ed;
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 15px #fff;
   }
   100% {
-    background-color: #0091b2;
-    -webkit-box-shadow: 0 0 3px #0091b2;
+    background-color: $yellow;
+    -webkit-box-shadow: 0 0 3px $yellow;
   }
 }
 @keyframes glowing {
-  0% {
-    background-color: #0091b2;
-    box-shadow: 0 0 3px #0091b2;
-  }
-  50% {
-    background-color: #21c7ed;
-    box-shadow: 0 0 15px #21c7ed;
-  }
-  100% {
-    background-color: #0091b2;
-    box-shadow: 0 0 3px #0091b2;
-  }
+    0% {
+      background-color: $yellow;
+      -webkit-box-shadow: 0 0 3px $yellow;
+    }
+    50% {
+      background-color: #fff;
+      -webkit-box-shadow: 0 0 15px #fff;
+    }
+    100% {
+      background-color: $yellow;
+      -webkit-box-shadow: 0 0 3px $yellow;
+    }
 }
 
 
