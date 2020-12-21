@@ -40,10 +40,20 @@
 .mobile{
   display: none !important;
 }
+.desktop{
+  display: inherit !important;
+}
+
+.hidden_params{
+  display: none;
+}
 
 @media (max-width: 1180px){
   .mobile{
     display: inherit !important;
+  }
+  .desktop{
+    display: none !important;
   }
   .container{
     padding-left: 20px;

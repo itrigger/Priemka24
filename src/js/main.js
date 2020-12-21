@@ -235,7 +235,32 @@ jQuery(document).ready(function () {
         })
     }
     /**/
+    if (jQuery(".print--ul").length > 0) {
+        jQuery(".print--ul").each(function () {
+            let item_gold = jQuery(this).find(".item--gold").text();
+            let item_silver = jQuery(this).find(".item--silver").text();
+            let item_platinum = jQuery(this).find(".item--platinum").text();
+            let item_palladium = jQuery(this).find(".item--palladium").text();
+            let item_typecount = jQuery(this).find(".item--typeofcount").text();
+            let item_fixprice = jQuery(this).find(".item--fixprice").text();
+            let item_price;
+            // Основная формула для каждого города и металла есть поправочный кэф
+            if (item_fixprice > 0) {
+                if (item_fixprice == "999999") {
+                    jQuery(this).find(".price").text("договорная");
+                } else {
+                    jQuery(this).find(".price .price_value").text(item_fixprice);
+                }
+            } else {
+                // З -40%, С -30%, Пл -30%, Пал -30%
+                item_price = (item_gold * GOLD * GOLD_DISCOUNT + item_silver * SILVER * SILVER_DISCOUNT + item_platinum * PLATINUM * PLATINUM_DISCOUNT + item_palladium * PALLADIUM * PALLADIUM_DISCOUNT) * USD;
+                // З -50%, С -35%, Пл -30%, Пал -35% (ост города)
+                jQuery(this).find(".price .price_value").text(Math.round((item_price + Number.EPSILON) * 100) / 100);
+            }
+            jQuery(this).find(".itemcount").text(TYPES[item_typecount - 1]);
 
+        })
+    }
     /**/
 
     $dropdown.prop('disabled', 'disabled'); // отключаем селекты, пока в них не подгрузятся данные
@@ -835,7 +860,7 @@ jQuery(document).ready(function () {
         getTotalPrice(); // пересчет итоговой цены
     })
 
-    jQuery(".btn-put-to-storage a").on("click", function (e) {
+/*    jQuery(".btn-put-to-storage a").on("click", function (e) {
         if (jQuery(this).hasClass("added")) {
             e.preventDefault();
             return false;
@@ -865,14 +890,14 @@ jQuery(document).ready(function () {
 
             jQuery(this).addClass("added").text("Добавлено!");
         }
-    });
+    });*/
 
     jQuery(".alertwindow .btn-close").click(function () {
         jQuery(".alertwindow").removeClass("active");
     });
 
     //Заполняем скрытые поля в форме ContactForm7 данными из локального хранилища
-    jQuery('.send-btn-wrapper a.btn-secondary').on('click', function (e) {
+    jQuery('.send-btn-wrapper a.btn-black').on('click', function (e) {
         e.preventDefault();
         let lsArr = JSON.parse(sessionStorage.getItem('order'));
         if (lsArr) {
@@ -882,7 +907,11 @@ jQuery(document).ready(function () {
                 opts: {
                     beforeShow: function (instance, current) {
                         jQuery("#restable table").html("");
-
+                        jQuery("#z1").val("");
+                        jQuery("#z2").val("");
+                        jQuery("#z3").val("");
+                        jQuery("#z4").val("");
+                        jQuery("#z5").val("");
                         for (const [i, arr] of lsArr.entries()) {
                             jQuery("#z1").val(jQuery("#z1").val() + "_" + arr[1]);
                             jQuery("#z2").val(jQuery("#z2").val() + "_" + arr[2]);
@@ -904,6 +933,24 @@ jQuery(document).ready(function () {
     });
 
 
+    jQuery(".card a").on('click touch', function () {
+        let dataval = jQuery(this).attr("data-val");
+        jQuery("select.el-type-1").addClass("glow");
+        function sayHi() {
+            jQuery("select.el-type-1").removeClass("glow");
+        }
+        setTimeout(sayHi, 5000);
+        jQuery("select.el-type-1").val(dataval).prop('selected', true);
+        jQuery("select.el-type-1").val(dataval).trigger('change');
+    });
+
+    jQuery(".btn-uniq-cat-desc").on('click touch', function () {
+        jQuery(".calculator").addClass("yellow-glow");
+        function sayHi() {
+            jQuery(".calculator").removeClass("yellow-glow");
+        }
+        setTimeout(sayHi, 5000);
+    });
 });
 
 

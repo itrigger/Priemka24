@@ -23,6 +23,8 @@
   ];
     var map;
 
+
+
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 18,
@@ -37,6 +39,14 @@
             fullscreenControl: true
         });
         var image = "http://localhost:3000/img/marker.png";
+
+        var image2 = "http://localhost:3000/img/metro.svg";
+        var latLng2 = new google.maps.LatLng(55.581482, 37.596214);
+        var marker2 = new google.maps.Marker({
+            position: latLng2,
+            map: map,
+            icon: image2
+        });
 
         var eqfeed_callback = function eqfeed_callback(sites) {
             var _loop = function _loop(i) {
@@ -64,6 +74,7 @@
 
         eqfeed_callback(sites);
     }
+
 
 
 </script>

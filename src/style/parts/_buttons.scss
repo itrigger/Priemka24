@@ -1,4 +1,4 @@
-.btn{
+.btn, .wpcf7-submit{
   display: inline-flex;
   align-items: center;
   padding: 0 24px;
@@ -30,7 +30,7 @@
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
-.btn-black{
+.btn-black, .wpcf7-submit{
   background: #000;
   color: #fff;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
@@ -84,6 +84,13 @@
   }
 }
 
+.btn-ico-print{
+  position: relative;
+  &:before {
+    @include pseudo("ico-print.svg", 20, 20, 19, 13);
+  }
+}
+
 .btn-ico-wt{
   position: relative;
   &:before {
@@ -111,6 +118,7 @@
   border-radius: 8px;
   padding-left: 70px;
   margin-top: 7px;
+  color: #000;
   &:hover{
     background-color: $yellowHover;
     transition: 0.2s background-color;

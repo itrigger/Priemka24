@@ -7,6 +7,23 @@ input[type=tel]
   border-radius: 3px;
   background: #EDEDED;
   padding: 0 15px;
+  &.wpcf7-not-valid{
+    border-color: red !important;
+  }
+}
+
+textarea{
+  border: 1px solid #BDBDBD;
+  border-radius: 3px;
+  background: #EDEDED;
+  padding: 10px 15px;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  height: 160px;
+  &.wpcf7-not-valid{
+    border-color: red !important;
+  }
 }
 
 label{
@@ -14,4 +31,165 @@ label{
   line-height: 18px;
   color: #828282;
   margin-bottom: 20px;
+}
+
+.wpcf7-not-valid-tip{
+  display: none !important;
+}
+
+.wpcf7 form .wpcf7-response-output{
+  margin: 0 !important;
+  font-size: 11px;
+}
+.wpcf7-form-control-wrap{
+  width: 100%;
+}
+
+#popupform{
+  max-width: 800px;
+  border-radius: 10px;
+}
+.f_line{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  input[type=email], input[type=tel], input[type=text]
+  {
+    width: 100%;
+  }
+  input[type=submit]{
+    margin-top: 20px;
+    margin-left: auto;
+  }
+  .ajax-loader{
+    position: absolute;
+    right: -28px;
+    top: 30px;
+  }
+}
+#restable, #printtable{
+  width: 100%;
+  table{
+    border-collapse: collapse;
+    width: 100%;
+  }
+  tr{
+    border-top: 1px solid rgba(2,111,160,.5);
+    &:last-child{
+      border-bottom: none;
+    }
+    &:nth-child(2n){
+      td{
+
+      }
+    }
+  }
+  td{
+    border: none;
+    font-size: 18px;
+    padding: 20px;
+  }
+  .col1{
+
+  }
+  .col2{
+
+  }
+  .col3{
+    white-space: nowrap;
+    .izm{
+      font-size: 15px;
+    }
+  }
+  .col4{
+    white-space: nowrap;
+    text-align: right;
+    .sum{
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 15px;
+    }
+  }
+  .totalsum{
+    //background: #fff !important;
+    text-align: right;
+    font-size: 26px;
+    //border-top: 1px solid rgba(2,111,160,.5);
+    div{
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: flex-end;
+      text-align: right;
+      .yellow-rounded{
+        margin-right: 10px;
+      }
+    }
+  }
+}
+.hidden_inputs {
+  display: none;
+}
+
+.fancybox-content{
+  background: $yellow;
+  color: #000;
+  .heading{
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+  input[type=text],
+  input[type=email],
+  input[type=tel],
+  textarea
+  {
+    background: #fff;
+    border-color: #fff;
+    border-radius: 5px;
+  }
+  .wpcf7-form-control-wrap{
+    textarea{
+      margin-top: 7px;
+    }
+    &.your-name input{
+      width: 98%;
+    }
+  }
+  .wpcf7 .wpcf7-response-output{
+    margin-top: 20px !important;
+  }
+}
+
+@media (max-width: 990px) {
+
+  #restable td {
+    font-size: 16px;
+  }
+  #restable .totalsum{
+    font-size: 26px;
+  }
+  .whitebg .heading{
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  #restable td{
+    display: block;
+    padding: 5px;
+    &.col1{
+      padding-top: 10px;
+    }
+    &.col2{
+      font-weight: 600;
+    }
+  }
+  #printtable .col4, #restable .col4{
+    text-align: left;
+  }
+  #restable .totalsum {
+    font-size: 20px;
+    padding: 15px 0;
+  }
 }

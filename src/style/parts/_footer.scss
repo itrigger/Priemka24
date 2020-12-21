@@ -2,7 +2,7 @@ footer.footer{
   margin-top: 94px;
   padding-top: 40px;
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   background: $yellow;
   position: relative;
   &:before{
@@ -28,8 +28,11 @@ footer.footer{
   .text{
     font-size: 14px;
     line-height: 17px;
-    max-width: 450px;
+    max-width: 600px;
     margin-top: 16px;
+    span{
+      display: block;
+    }
   }
   .footer-nav{
     margin-top: 28px;
@@ -39,7 +42,7 @@ footer.footer{
       li{
         margin: 0 25px;
         a{
-          color: #fff;
+          color: $black;
           text-decoration: none;
           font-size: 14px;
           line-height: 17px;
@@ -61,7 +64,8 @@ footer.footer{
     margin-top: 28px;
   }
   .copyright{
-    color: rgba(#fff, 1);
+    margin-top: 28px;
+    color: $black;
     font-size: 15px;
     line-height: 20px;
   }
