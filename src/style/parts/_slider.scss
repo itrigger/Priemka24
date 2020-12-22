@@ -5,7 +5,6 @@
   border-radius: 9px;
   max-width: 560px;
   .top-slider_wrapper{
-
     padding: 32px;
     background: #fff;
   }
@@ -120,11 +119,16 @@
   }
   .top-slider .top-slider_wrapper{
     padding: 0;
+    background: transparent;
   }
   .top-slider .desc{
     font-size: 16px;
     line-height: 22px;
   }
-
-
+  .swiper-button-next{
+    right: 6px;
+  }
+  .swiper-button-prev{
+    left: 6px;
+  }
 }

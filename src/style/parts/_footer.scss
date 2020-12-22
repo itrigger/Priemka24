@@ -118,6 +118,55 @@ footer.footer{
   top: -80px;
 }
 
+.footer.mobile{
+
+}
+
+.footer-address{
+  margin-bottom: 45px;
+  li, a {
+    font-size: 14px;
+    line-height: 18px;
+    color: $black;
+    text-decoration: none;
+    max-width: 240px;
+    font-weight: 600;
+  }
+  li{
+    margin-top: 65px;
+    position: relative;
+  }
+}
+
+.ico-black-map{
+  &:before {
+    @include pseudo("ico-black-map.svg", 19, 24, 0, -30);
+    left: 50%;
+    margin-left: -10px;
+  }
+}
+.ico-black-metro{
+  &:before {
+    @include pseudo("ico-black-metro.svg", 25, 28, 0, -30);
+    left: 50%;
+    margin-left: -12px;
+  }
+}
+.ico-black-mail{
+  &:before {
+    @include pseudo("ico-black-mail.svg", 29, 27, 0, -30);
+    left: 50%;
+    margin-left: -15px;
+  }
+}
+.ico-black-tel{
+  &:before {
+    @include pseudo("ico-black-phone.svg", 25, 25, 0, -30);
+    left: 50%;
+    margin-left: -12px;
+  }
+}
+
 @media (max-width: 1180px){
   footer.footer .footer-nav ul{
     flex-direction: column;

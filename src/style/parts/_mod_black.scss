@@ -50,7 +50,7 @@
   position: relative;
   padding-left: 29px;
   &:after{
-    @include pseudo("ico-metro.svg",25,30,-5,-4);
+    @include pseudo("ico-metro.svg",25,30,-3,-4);
   }
 }
 

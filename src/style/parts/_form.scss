@@ -134,6 +134,30 @@ label{
 .fancybox-content{
   background: $yellow;
   color: #000;
+  border-radius: 10px;
+  max-width: 540px;
+  position: relative;
+  &:before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: url("../img/pattern.png") 0 0 repeat;
+    opacity: 0.9;
+    z-index: 0;
+  }
+  #restable{
+    background: $yellow;
+  }
+  .form--wrap{
+    position: relative;
+    z-index: 2;
+  }
   .heading{
     font-size: 30px;
     font-weight: 800;
@@ -147,17 +171,22 @@ label{
     background: #fff;
     border-color: #fff;
     border-radius: 5px;
+    margin-bottom: 8px;
   }
-  .wpcf7-form-control-wrap{
-    textarea{
-      margin-top: 7px;
-    }
-    &.your-name input{
-      width: 98%;
-    }
-  }
+
   .wpcf7 .wpcf7-response-output{
     margin-top: 20px !important;
+  }
+  &#popupform{
+    max-width: 800px;
+    .wpcf7-form-control-wrap{
+      textarea{
+        margin-top: 7px;
+      }
+      &.your-name input{
+        width: 98%;
+      }
+    }
   }
 }
 

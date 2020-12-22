@@ -1,0 +1,16 @@
+User-agent: * #указывает, для каких роботов установлены директивы
+Disallow: /katalog/ # запрещает ссылки
+Disallow: *?s=              # поиск
+Disallow: *&s=              # поиск
+Disallow: /search/          # поиск
+Disallow: /author/          # архив автора
+Disallow: /users/           # архив авторов
+Disallow: */trackback       # трекбеки, уведомления в комментариях о появлении открытой 
+                            # ссылки на статью
+Disallow: */feed            # все фиды
+Disallow: */rss             # rss фид
+Disallow: */embed           # все встраивания
+Disallow: */wlwmanifest.xml # xml-файл манифеста Windows Live Writer (если не используете, 
+                            # правило можно удалить)
+Disallow: /xmlrpc.php       # файл WordPress API
+Sitemap: https://priemkm.ru/sitemap.xml # указывает роботу на файл Sitemap для сайта

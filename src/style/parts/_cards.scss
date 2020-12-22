@@ -7,6 +7,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  position: relative;
+  z-index: 3;
   .card{
     display: flex;
     flex-basis: 25%;
@@ -29,7 +31,12 @@
   }
   &+.cards{
     margin-top: 17px;
+    z-index: 2;
   }
+}
+
+.cards-line2{
+
 }
 
 .top-slider_bottom{
@@ -83,7 +90,7 @@
     margin-left: -20px;
     margin-right: -20px;
     width: 100vw;
-    padding: 60px 20px 30px;
+    padding: 60px 25px 30px;
     .btn-w{
       margin-top: 37px;
       display: flex;

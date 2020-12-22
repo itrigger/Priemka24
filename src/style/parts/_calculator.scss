@@ -27,10 +27,11 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background: url("../img/pattern.png") 0 bottom repeat-x;
+    background: url("../img/pattern.png") 0 0 repeat;
     opacity: 0.9;
     z-index: 0;
   }
+
   select{
     width: 260px;
     height: 40px;
@@ -51,6 +52,7 @@
       outline: none !important;
     }
   }
+  input[type=number],
   input[type=text]{
     height: 40px;
     border-radius: 5px;
@@ -423,7 +425,9 @@ transform: rotate(45deg);
     height: 40px;
     font-size: 14px;
   }
-  .calculator input[type=text]{
+  .calculator input[type=text],
+  .calculator input[type=number]
+  {
     height: 40px;
     width: 65px;
   }
@@ -497,7 +501,9 @@ transform: rotate(45deg);
     height: 40px;
     font-size: 14px;
   }
-  .calculator input[type=text]{
+  .calculator input[type=number],
+  .calculator input[type=text]
+  {
     height: 40px;
     width: 65px;
   }
@@ -546,7 +552,7 @@ transform: rotate(45deg);
   }
   .send-btn-wrapper .btn{
     font-size: 16px;
-    min-width: 280px;
+    max-width: 660px;
     text-align: center;
     justify-content: center;
     width: 100%;
@@ -579,6 +585,7 @@ transform: rotate(45deg);
     margin-right: 0;
 
   }
+  .calculator input[type=number],
   .calculator input[type=text]{
     width: 65px;
   }

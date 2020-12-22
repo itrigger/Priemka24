@@ -54,3 +54,36 @@
     }
   }
 }
+
+
+@media (max-width: 1180px){
+  .page-template-print{
+    footer.footer{
+      margin-top: 30px;
+      padding-top: 30px;
+    }
+    .btn-ico-download{
+      margin: 0 10px 20px;
+    }
+    .hintbox .right  .btn-ico-print{
+      margin: 0 10px 20px;
+    }
+  }
+  .hintbox{
+    flex-direction: column;
+    text-align: center;
+    margin-top: 0;
+    padding-left: 0;
+  }
+  .hintbox .right{
+    padding-left: 0;
+    padding-top: 30px;
+  }
+  .price_btn_wrapper{
+    text-align: center;
+  }
+  .hintbox .left img{
+    max-height: 120px;
+  }
+
+}

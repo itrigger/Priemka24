@@ -32,8 +32,8 @@ jQuery(document).ready(function () {
 
         // Navigation arrows
         navigation: {
-            nextEl: '.swiper-cards .swiper-button-next',
-            prevEl: '.swiper-cards .swiper-button-prev',
+            nextEl: '.cards-line2 .swiper-button-next',
+            prevEl: '.cards-line2 .swiper-button-prev',
         },
     });
 
@@ -718,7 +718,7 @@ jQuery(document).ready(function () {
             '        </div>\n' +
             '        <div class="el-wrap labeled-input ew3">\n' +
             '          <label>Кол.\n' +
-            '            <input  type="text" value="1" class="inputCount"/> <span class="typeOfCount">кг.</span>\n' +
+            '            <input  type="number" min="1" value="1" class="inputCount"/> <span class="typeOfCount">кг.</span>\n' +
             '          </label>\n' +
             '        </div>\n' +
             '        <div class="el-wrap ew4 labeled-input input-dark to-right">\n' +
@@ -810,7 +810,7 @@ jQuery(document).ready(function () {
                     '        </div>\n' +
                     '        <div class="el-wrap ew3 labeled-input">\n' +
                     '          <label>Кол.\n' +
-                    '            <input  type="text" value="1" class="inputCount"/> <span class="typeOfCount">кг.</span>\n' +
+                    '            <input  type="number" min="1" value="1" class="inputCount"/> <span class="typeOfCount">кг.</span>\n' +
                     '          </label>\n' +
                     '        </div>\n' +
                     '        <div class="el-wrap ew4 labeled-input input-dark to-right">\n' +
@@ -935,13 +935,39 @@ jQuery(document).ready(function () {
 
     jQuery(".card a").on('click touch', function () {
         let dataval = jQuery(this).attr("data-val");
-        jQuery("select.el-type-1").addClass("glow");
-        function sayHi() {
-            jQuery("select.el-type-1").removeClass("glow");
+
+        if(jQuery('.els-row-' + rowsCount).find(".el-name option:selected").attr('value').toString() != '9999'){
+            console.log('click on +');
+            jQuery(".el-add-row-btn").trigger('click');
+            jQuery(".els-row-"+rowsCount).find("select.el-name").addClass("glow");
+            function sayHi() {
+                jQuery(".els-row-"+rowsCount).find("select.el-name").removeClass("glow");
+            }
+            setTimeout(sayHi, 4000);
+            jQuery(".els-row-"+rowsCount).find("select.el-type").val(dataval).prop('selected', true);
+
+            jQuery(".els-row-"+rowsCount).find("select.el-type").val(dataval).trigger('change');
+        } else {
+            jQuery(".els-row-"+rowsCount).find("select.el-name").addClass("glow");
+            function sayHi() {
+                jQuery(".els-row-"+rowsCount).find("select.el-name").removeClass("glow");
+            }
+            setTimeout(sayHi, 4000);
+            jQuery(".els-row-"+rowsCount).find("select.el-type").val(dataval).prop('selected', true);
+
+            jQuery(".els-row-"+rowsCount).find("select.el-type").val(dataval).trigger('change');
         }
-        setTimeout(sayHi, 4000);
-        jQuery("select.el-type-1").val(dataval).prop('selected', true);
-        jQuery("select.el-type-1").val(dataval).trigger('change');
+
+
+
+      /*  if(rowsCount>1){
+            console.log('click on +');
+            jQuery(".el-add-row-btn").trigger('click');
+        } else {
+            console.log('click on select');
+            jQuery("select.el-type-1").val(dataval).trigger('change');
+        }
+        console.log(rowsCount);*/
     });
 
     jQuery(".btn-uniq-cat-desc").on('click touch', function () {
@@ -952,6 +978,32 @@ jQuery(document).ready(function () {
         setTimeout(sayHi, 5000);
     });
 
-    var rellax = new Rellax('.rellax');
+    /*Parallax effect*/
+    var rellax = new Rellax('.rellax', {
+        breakpoints: [320, 1024, 1600]
+    });
+    /**/
+
+    /*Прокрутка к блоку*/
+
+        jQuery('a[href^="#"]').bind('click.smoothscroll',function (e) {
+            e.preventDefault();
+            var target = this.hash,
+                $target = jQuery(target);
+
+            if(target === "#main-page--calculator"){
+                jQuery(".calculator").addClass("yellow-glow");
+                function sayHi() {
+                    jQuery(".calculator").removeClass("yellow-glow");
+                }
+                setTimeout(sayHi, 5000);
+            }
+
+            jQuery('html, body').stop().animate( {
+                'scrollTop': $target.offset().top-100
+            }, 900, 'swing', function () {/*callback*/} );
+        } );
+
+
 
 });
