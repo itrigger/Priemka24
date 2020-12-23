@@ -3,17 +3,245 @@
 }
 
 @media (min-width: 1367px) and (max-width: 1600px){
-  .graph_tranz{top:-118px;}
+
   .mod_getprice .gp8{top: -85px;}
   .mod_getprice .gp1{top: 804px;}
   .mod_getprice .gp3{top: 165px;}
   .mod_getprice .gp4{top: 290px;}
   .mod_getprice .gp5{top: 211px;}
   .calc_gp_1{bottom: 335px;}
-  .gp_tranz2{    top: -265px;}
+  .gp_tranz2{top: -265px;}
   .mod-map {
     position: relative;
     z-index: 222;
   }
+}
+
+@media (min-height: 300px){
+  .graph_tranz{
+    top: -218px;
+  }
+}
+
+@media (min-height: 400px){
+  .graph_tranz{
+    top: -198px;
+  }
+  .graph_ag{
+    bottom: -472px;
+  }
+  .sign_quest_1{
+    bottom: -90px;
+  }
+  .sign_quest_2{
+    top: 570px;
+  }
+  .sign_quest_3{
+    top: -205px;
+  }
+  .sign_quest_4{
+    top: -93px;
+  }
+  .mod_getprice .gp1 {
+    top: 1310px;
+  }
+  .mod_getprice .gp2{
+    top: 377px;
+  }
+  .mod_getprice .gp3 {
+    top: 305px;
+  }
+  .mod_getprice .gp4 {
+    top: 460px;
+  }
+  .mod_getprice .gp5 {
+    top: 371px;
+  }
+  .mod_getprice .gp6{
+    top: 290px;
+  }
+  .mod_getprice .gp7{
+    top: 497px;
+  }
+  .calc_gp_1 {
+    bottom: 730px;
+  }
+  .gp_tranz2 {
+    top: -695px;
+  }
+}
+
+@media (min-height: 500px){
+  .graph_tranz{
+    top: -178px;
+  }
+  .mod_getprice .gp1 {
+    top: 1100px;
+  }
+  .mod_getprice .gp2 {
+    top: 297px;
+  }
+  .mod_getprice .gp3 {
+    top: 245px;
+  }
+  .mod_getprice .gp4 {
+    top: 390px;
+  }
+  .mod_getprice .gp5 {
+    top: 271px;
+  }
+  .mod_getprice .gp6 {
+    top: 230px;
+  }
+  .mod_getprice .gp7 {
+    top: 397px;
+  }
+  .calc_gp_1 {
+    bottom: 590px;
+  }
+  .gp_tranz2 {
+    top: -515px;
+  }
+
+}
+
+@media (min-height: 600px){
+  .graph_tranz{
+    top: -158px;
+  }
+  .mod_getprice .gp1 {
+    top: 970px;
+  }
+  .mod_getprice .gp2 {
+    top: 247px;
+  }
+  .mod_getprice .gp3 {
+    top: 205px;
+  }
+  .mod_getprice .gp4 {
+    top: 350px;
+  }
+  .mod_getprice .gp5 {
+    top: 221px;
+  }
+  .mod_getprice .gp6 {
+    top: 180px;
+  }
+  .mod_getprice .gp7 {
+    top: 347px;
+  }
+  .calc_gp_1 {
+    bottom: 470px;
+  }
+  .gp_tranz2 {
+    top: -375px;
+  }
+}
+
+@media (min-height: 700px){
+  .graph_tranz{
+    top: -128px;
+  }
+  .graph_ag {
+    bottom: -352px;
+  }
+  .mod_getprice .gp1 {
+    top: 840px;
+  }
+  .sign_quest_2 {
+    top: 360px;
+  }
+  .sign_quest_3 {
+    top: -85px;
+  }
+  .sign_quest_4 {
+    top: 57px;
+  }
+  .mod_getprice .gp2 {
+    top: 207px;
+  }
+  .mod_getprice .gp3 {
+    top: 175px;
+  }
+  .mod_getprice .gp4 {
+    top: 340px;
+  }
+  .mod_getprice .gp5 {
+    top: 191px;
+  }
+  .mod_getprice .gp6 {
+    top: 170px;
+  }
+  .mod_getprice .gp7 {
+    top: 337px;
+  }
+  .calc_gp_1 {
+    bottom: 400px;
+  }
+  .gp_tranz2 {
+    top: -255px;
+  }
+
+}
+
+@media (min-height: 800px){
+  .graph_tranz{
+    top: -118px;
+  }
+  .mod_getprice .gp1 {
+    top: 700px;
+  }
+  .mod_getprice .gp1 {
+    top: 740px;
+  }
+  .mod_getprice .gp2 {
+    top: 177px;
+  }
+  .mod_getprice .gp3 {
+    top: 145px;
+  }
+  .mod_getprice .gp4 {
+    top: 280px;
+  }
+  .mod_getprice .gp5 {
+    top: 161px;
+  }
+  .mod_getprice .gp6 {
+    top: 130px;
+  }
+  .mod_getprice .gp7 {
+    top: 297px;
+  }
+  .calc_gp_1 {
+    bottom: 360px;
+  }
+  .gp_tranz2 {
+    top: -155px;
+  }
+
+}
+@media (min-height: 900px){
+  .graph_tranz{
+    top: -118px;
+  }
+  .mod_getprice .gp1 {
+    top: 670px;
+  }
+  .graph_tranz {
+    top: -98px;
+  }
+  .sign_quest_3 {
+    top: -45px;
+  }
+  .sign_quest_4 {
+    top: 177px;
+  }
+  .graph_ag {
+    bottom: -222px;
+  }
+  .calc_gp_1 {
+    bottom: 290px;
+  }
+
 }
 

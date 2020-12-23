@@ -185,7 +185,7 @@ jQuery(document).ready(function () {
 
 
     /* Add fancybox to product img */
-    if (jQuery(".catalog--products").length > 0) {
+    /*if (jQuery(".catalog--products").length > 0) {
         jQuery(".catalog--products-ul .product img.attachment-woocommerce_thumbnail").on('click', function () {
             jQuery.fancybox.open({
                 src: jQuery(this).attr('src'),
@@ -233,7 +233,7 @@ jQuery(document).ready(function () {
             }
             jQuery(this).find(".itemcount").text(TYPES[item_typecount - 1]);
         })
-    }
+    }*/
     /**/
     if (jQuery(".print--ul").length > 0) {
         jQuery(".print--ul").each(function () {
@@ -524,7 +524,7 @@ jQuery(document).ready(function () {
             totalPrice += temp;
         })
         if (totalPrice > 0) {
-            jQuery(".els-total-price-num span").text(totalPrice.toFixed(2));
+            jQuery(".els-total-price-num span").text(totalPrice.toFixed(0));
         } else {
             jQuery(".els-total-price-num span").text("0");
         }
@@ -771,7 +771,8 @@ jQuery(document).ready(function () {
         }
 
         if (item_price > 0) {
-            $row.find('.row-total span').text(Math.round((item_price + Number.EPSILON) * 100) / 100);
+           //$row.find('.row-total span').text(Math.round((item_price + Number.EPSILON) * 100) / 100);
+           $row.find('.row-total span').text(Math.round(item_price));
         } else {
             $row.find('.row-total span').text("0");
         }

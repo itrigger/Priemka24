@@ -79,6 +79,8 @@ header.header{
   }
   &:after{
     @include pseudo("line_m.svg",2,12,15,40);
+    top:50%;
+    margin-top: -6px;
   }
 }
 .ico-wt{
@@ -106,7 +108,7 @@ header.header{
   }
 }
 .top-phone{
-  padding-left: 46px;
+  padding-left: 78px;
   position: relative;
   top: -17px;
   a{
