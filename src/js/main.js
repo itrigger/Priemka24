@@ -415,7 +415,7 @@ jQuery(document).ready(function () {
             isLoading(0);
         } else {
             // запрос на АПИ
-            fetch(`${CONST_HOST}/wp-json/wc/v3/products?consumer_key=${CONST_CK}&consumer_secret=${CONST_CS}&category=${thiscatID}&per_page=100`)
+            fetch(`${CONST_HOST}/wp-json/wc/v3/products?consumer_key=${CONST_CK}&consumer_secret=${CONST_CS}&category=${thiscatID}&per_page=100&status=publish`)
                 .then(
                     function (response) {
                         if (response.status !== 200) {
@@ -509,7 +509,7 @@ jQuery(document).ready(function () {
     })
 
     $parentEl.on('input', '.inputCount', function () {
-        let id = jQuery(this).parent().parent().parent().attr("data-id");
+        let id = jQuery(this).parent().parent().parent().parent().attr("data-id");
         let $errorInput = jQuery('.inputCount-' + id);
         harddelete_notify($errorInput);
         getPrice(id);
@@ -670,7 +670,7 @@ jQuery(document).ready(function () {
 
         // запрос на АПИ
         try {
-            let response = await fetch(`${CONST_HOST}/wp-json/wc/v3/products?consumer_key=${CONST_CK}&consumer_secret=${CONST_CS}&category=${thiscatID}&per_page=100`);
+            let response = await fetch(`${CONST_HOST}/wp-json/wc/v3/products?consumer_key=${CONST_CK}&consumer_secret=${CONST_CS}&category=${thiscatID}&per_page=100&status=publish`);
             let item = await response.json();
 
             isLoading(0);
@@ -718,7 +718,9 @@ jQuery(document).ready(function () {
             '        </div>\n' +
             '        <div class="el-wrap labeled-input ew3">\n' +
             '          <label>Кол.\n' +
-            '            <input  type="number" min="1" value="1" class="inputCount"/> <span class="typeOfCount">кг.</span>\n' +
+            '            <div class="inputCountWrap"><input  type="number" min="1" value="1" class="inputCount"/><span class="stepper-step up"></span>\n' +
+            '<span class="stepper-step down"></span>\n' +
+            '</div> <span class="typeOfCount">кг.</span>\n' +
             '          </label>\n' +
             '        </div>\n' +
             '        <div class="el-wrap ew4 labeled-input input-dark to-right">\n' +
@@ -767,7 +769,7 @@ jQuery(document).ready(function () {
         if (FixPrice > 0) {
             item_price = FixPrice * weight;
         } else {
-            item_price = (item_gold * GOLD * GOLD_DISCOUNT + item_silver * SILVER * SILVER_DISCOUNT + item_platinum * PLATINUM * PLATINUM_DISCOUNT + item_palladium * PALLADIUM * PALLADIUM_DISCOUNT) * USD * weight;
+            item_price = Math.round((item_gold * GOLD * GOLD_DISCOUNT + item_silver * SILVER * SILVER_DISCOUNT + item_platinum * PLATINUM * PLATINUM_DISCOUNT + item_palladium * PALLADIUM * PALLADIUM_DISCOUNT) * USD) * weight;
         }
 
         if (item_price > 0) {
@@ -811,7 +813,9 @@ jQuery(document).ready(function () {
                     '        </div>\n' +
                     '        <div class="el-wrap ew3 labeled-input">\n' +
                     '          <label>Кол.\n' +
-                    '            <input  type="number" min="1" value="1" class="inputCount"/> <span class="typeOfCount">кг.</span>\n' +
+                    '            <div class="inputCountWrap"><input  type="number" min="1" value="1" class="inputCount"/><span class="stepper-step up"></span>\n' +
+                    '<span class="stepper-step down"></span>\n' +
+                    '</div> <span class="typeOfCount">кг.</span>\n' +
                     '          </label>\n' +
                     '        </div>\n' +
                     '        <div class="el-wrap ew4 labeled-input input-dark to-right">\n' +
@@ -1005,6 +1009,16 @@ jQuery(document).ready(function () {
             }, 900, 'swing', function () {/*callback*/} );
         } );
 
+        jQuery(".calculator").on('click', '.stepper-step', function (e) {
+            let curval = parseFloat(jQuery(this).parent().find("input").val());
+          if(e.target.classList[1] === "up"){
+                jQuery(this).parent().find("input").val(curval + 1).trigger("input");
+          } else {
+              if(curval > 1) {
+                  jQuery(this).parent().find("input").val(curval - 1).trigger("input");
+              }
+           }
+        });
 
 
 });

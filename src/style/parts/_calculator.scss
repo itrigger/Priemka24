@@ -81,7 +81,7 @@
       color: $black;
       margin-bottom: 0;
     }
-    input, .row-total{
+    .row-total{
       margin-left: 14px;
       margin-right: 10px;
     }
@@ -261,6 +261,7 @@ transform: rotate(45deg);
   left: 370px;
   bottom: 245px;
   z-index: 100;
+  pointer-events: none;
 }
 
 
@@ -408,6 +409,37 @@ input[type="number"]:hover,
 input[type="number"]:focus {
   appearance: none;
   -moz-appearance: textfield;
+}
+
+.inputCountWrap{
+  overflow: hidden;
+  position: relative;
+  width: 105px;
+  display: inline-flex;
+  border-radius: 5px;
+  margin-left: 14px;
+  margin-right: 10px;
+}
+.stepper-step {
+  background: #eee url("../img/fs-stepper-arrows.png") no-repeat;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: block;
+  height: 50%;
+  position: absolute;
+  right: 2px;
+  text-indent: -99999px;
+  width: 20px;
+  z-index: 50;
+}
+.stepper-step.up {
+  background-position: center top;
+  border-bottom: none;
+  top: 2px;
+}
+.stepper-step.down {
+  background-position: center bottom;
+  bottom: 2px;
 }
 
 @media (min-width: 661px) and (max-width: 1024px){
