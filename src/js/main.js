@@ -101,7 +101,8 @@ jQuery(document).ready(function () {
     let EUR = 1 / stock_eur * stock_rub;
     let STOCK_DATE = stock_date.toString();
     const TYPES = ["кг", "шт", "г", "кольцо", "секция", "2 секции", "контакт", "гр"];
-    const CONST_HOST = window.location.origin;
+    const CONST_HOST = "https://priemkm.ru";
+    //const CONST_HOST = window.location.origin;
     console.log(CONST_HOST);
     const CONST_CK = 'ck_1a2af9ee2ad6e3ac6a0f9237cebfcc62ad4a88a5';
     const CONST_CS = 'cs_fc757c4e40772bd4cb6b5f36c8a81bf33504395f';
@@ -939,10 +940,20 @@ jQuery(document).ready(function () {
 
 
     jQuery(".card a").on('click touch', function () {
-        let dataval = jQuery(this).attr("data-val");
+        let dataval = parseInt(jQuery(this).attr("data-val"));
+        let arr_lom = JSON.parse(jQuery('.opt1').attr('data-vals'));
+        let arr_pribor =  JSON.parse(jQuery('.opt2').attr('data-vals'));
+
+        if (arr_lom.indexOf(dataval) !== -1) {
+            jQuery(".opt").removeClass("active");
+            jQuery(".opt1").addClass("active");
+        } else {
+            jQuery(".opt").removeClass("active");
+            jQuery(".opt2").addClass("active");
+        }
+
 
         if(jQuery('.els-row-' + rowsCount).find(".el-name option:selected").attr('value').toString() != '9999'){
-            console.log('click on +');
             jQuery(".el-add-row-btn").trigger('click');
             jQuery(".els-row-"+rowsCount).find("select.el-name").addClass("glow");
             function sayHi() {
@@ -962,17 +973,6 @@ jQuery(document).ready(function () {
 
             jQuery(".els-row-"+rowsCount).find("select.el-type").val(dataval).trigger('change');
         }
-
-
-
-      /*  if(rowsCount>1){
-            console.log('click on +');
-            jQuery(".el-add-row-btn").trigger('click');
-        } else {
-            console.log('click on select');
-            jQuery("select.el-type-1").val(dataval).trigger('change');
-        }
-        console.log(rowsCount);*/
     });
 
     jQuery(".btn-uniq-cat-desc").on('click touch', function () {
@@ -983,11 +983,11 @@ jQuery(document).ready(function () {
         setTimeout(sayHi, 5000);
     });
 
-    /*Parallax effect*/
+
     var rellax = new Rellax('.rellax', {
         breakpoints: [320, 1024, 1600]
     });
-    /**/
+
 
     /*Прокрутка к блоку*/
 
@@ -1009,6 +1009,7 @@ jQuery(document).ready(function () {
             }, 900, 'swing', function () {/*callback*/} );
         } );
 
+        /*степпер для калькулятора*/
         jQuery(".calculator").on('click', '.stepper-step', function (e) {
             let curval = parseFloat(jQuery(this).parent().find("input").val());
           if(e.target.classList[1] === "up"){
@@ -1019,6 +1020,33 @@ jQuery(document).ready(function () {
               }
            }
         });
+
+
+     /*фильтр селекта*/
+    jQuery(".els-filter .opt").on('click', function () {
+       jQuery(this).parent().find(".opt").removeClass("active");
+        jQuery(this).addClass("active");
+    });
+
+    function CheckProjects(el) {
+        let $mel = el;
+        var arrVals = JSON.parse(jQuery('.opt.active').attr('data-vals'));
+        jQuery($mel).find('option').each(function () { //Loop through each option
+            var thisVal = parseInt(jQuery(this).val()); //Put the array of projects in a variable
+            if (jQuery.inArray(thisVal, arrVals) > -1) { //If current project ID is in array of projects
+                jQuery(this).show(); //Show the option
+            } else { // Else if current project ID is NOT in array of projects
+                jQuery(this).hide(); //hide the option
+            }
+        });
+    }
+
+    CheckProjects();
+    jQuery('body').on('mousedown', '.el-type', function() { //When we change the project, call the function
+        console.log("open");
+        let $el = jQuery(this);
+        CheckProjects($el);
+    });
 
 
 });

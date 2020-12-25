@@ -442,6 +442,26 @@ input[type="number"]:focus {
   bottom: 2px;
 }
 
+
+.els-filter{
+  position: relative;
+  display: flex;
+  margin-bottom: 20px;
+  .opt{
+    background: white;
+    padding: 5px 10px;
+    margin-right: 15px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    &.active{
+      font-weight: 600;
+      background: #000;
+      color: #fff;
+    }
+  }
+}
+
 @media (min-width: 661px) and (max-width: 1024px){
   .els-row{
     flex-direction: row;
@@ -473,6 +493,9 @@ input[type="number"]:focus {
   .calculator input[type=number]
   {
     height: 40px;
+    width: 65px;
+  }
+  .inputCountWrap{
     width: 65px;
   }
   .calculator .labeled-input{
@@ -549,6 +572,9 @@ input[type="number"]:focus {
   .calculator input[type=text]
   {
     height: 40px;
+    width: 65px;
+  }
+  .inputCountWrap{
     width: 65px;
   }
   .calculator .labeled-input{
@@ -631,6 +657,9 @@ input[type="number"]:focus {
   }
   .calculator input[type=number],
   .calculator input[type=text]{
+    width: 65px;
+  }
+  .inputCountWrap{
     width: 65px;
   }
   .calculator .labeled-input{
