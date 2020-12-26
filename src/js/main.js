@@ -88,6 +88,7 @@ jQuery(document).ready(function () {
     var PALLADIUM_DISCOUNT = 0.7;
 
     let categoriesAPI = {}; // объект где храним список категорий
+    let categoriesName = [];
     let productsAPI = {}; // объект где храним список продуктов
     let rowsCount = 1; // изначальное кол-во строк
     let $parentEl = jQuery('.calculator'); // ссылка на родительскую обертку
@@ -101,13 +102,14 @@ jQuery(document).ready(function () {
     let EUR = 1 / stock_eur * stock_rub;
     let STOCK_DATE = stock_date.toString();
     const TYPES = ["кг", "шт", "г", "кольцо", "секция", "2 секции", "контакт", "гр"];
-    const CONST_HOST = "https://priemkm.ru";
-    //const CONST_HOST = window.location.origin;
+    //const CONST_HOST = "https://priemkm.ru";
+    const CONST_HOST = window.location.origin;
     console.log(CONST_HOST);
     const CONST_CK = 'ck_1a2af9ee2ad6e3ac6a0f9237cebfcc62ad4a88a5';
     const CONST_CS = 'cs_fc757c4e40772bd4cb6b5f36c8a81bf33504395f';
     const $dropdown = jQuery(".el-type-1"); // начальные ссылки на селекты
     const $dropdownChild = jQuery(".el-name-1");
+
 
     let lsArr = JSON.parse(sessionStorage.getItem('order'));
     if (lsArr) {
@@ -184,58 +186,6 @@ jQuery(document).ready(function () {
 
     updateStocksHTML();
 
-
-    /* Add fancybox to product img */
-    /*if (jQuery(".catalog--products").length > 0) {
-        jQuery(".catalog--products-ul .product img.attachment-woocommerce_thumbnail").on('click', function () {
-            jQuery.fancybox.open({
-                src: jQuery(this).attr('src'),
-                type: 'image',
-                toolbar: false,
-                beforeShow: function (instance, current) {
-                    jQuery(".fancybox-toolbar").css("display", "none");
-                },
-                afterShow: function (instance, current) {
-                    jQuery(".fancybox-content").prepend("<div class='fancy_close'><svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1\" viewBox=\"0 0 24 24\"><path d=\"M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z\"></path></svg></div>");
-                    jQuery(".fancy_close").on('click', function () {
-                        instance.close();
-                    })
-                },
-                clickContent: 'close',
-                clickSlide: "close",
-                buttons: ['close'],
-                touch: false
-                //fancybox-content
-            });
-        });
-
-        //Высчитываем цену товара, данные для цены выводим с помощью php и ACF
-        jQuery(".catalog--products-ul .product").each(function () {
-            let item_gold = jQuery(this).find(".item--gold").text();
-            let item_silver = jQuery(this).find(".item--silver").text();
-            let item_platinum = jQuery(this).find(".item--platinum").text();
-            let item_palladium = jQuery(this).find(".item--palladium").text();
-            let item_typecount = jQuery(this).find(".item--typeofcount").text();
-            let item_fixprice = jQuery(this).find(".item--fixprice").text();
-            let item_price;
-            // Основная формула для каждого города и металла есть поправочный кэф
-            if (item_fixprice > 0) {
-                if (item_fixprice == "999999") {
-                    jQuery(this).find(".price").text("договорная");
-                    jQuery(this).find(".btn-put-to-storage").css("display", "none");
-                } else {
-                    jQuery(this).find(".price .price_value").text(item_fixprice);
-                }
-            } else {
-                // З -40%, С -30%, Пл -30%, Пал -30%
-                item_price = (item_gold * GOLD * GOLD_DISCOUNT + item_silver * SILVER * SILVER_DISCOUNT + item_platinum * PLATINUM * PLATINUM_DISCOUNT + item_palladium * PALLADIUM * PALLADIUM_DISCOUNT) * USD;
-                // З -50%, С -35%, Пл -30%, Пал -35% (ост города)
-                jQuery(this).find(".price .price_value").text(Math.round((item_price + Number.EPSILON) * 100) / 100);
-            }
-            jQuery(this).find(".itemcount").text(TYPES[item_typecount - 1]);
-        })
-    }*/
-    /**/
     if (jQuery(".print--ul").length > 0) {
         jQuery(".print--ul").each(function () {
             let item_gold = jQuery(this).find(".item--gold").text();
@@ -338,12 +288,14 @@ jQuery(document).ready(function () {
                     response.json().then(function (data) {
                         categoriesAPI = data;
                         $dropdown.empty();
+
                         jQuery.each(categoriesAPI, function () {
                             $dropdown.append(jQuery("<option />").val(this.id).text(this.name));
                         });
                         $dropdown.append(jQuery("<option disabled hidden selected value='9999'></option>").text("Выберите тип элемента"));
                         $dropdown.prop('disabled', false);
                         //fillChildSelect(1);
+                        CheckProjects();
                         isLoading(0);
                     });
 
@@ -736,6 +688,7 @@ jQuery(document).ready(function () {
             currentDD.append(jQuery("<option />").val(this.id).text(this.name));
         });
         currentDD.prop('disabled', false);
+
         isLoading(0);
         setTimeout(function () {
             jQuery('.els-row-' + rowId).removeClass("collapsed");
@@ -785,8 +738,7 @@ jQuery(document).ready(function () {
     }
 
 // Добавление новой строки (тут проверка, заполнена ли предыдущая строка)
-    jQuery(".el-add-row-btn").on('click', function () {
-
+    const addNewRow = function (selectVal = null) {
         if ((jQuery('.els-row-' + rowsCount).find(".el-name").attr("disabled")) || (jQuery('.els-row-' + rowsCount).find(".el-name option:selected").attr('value').toString() == '9999')) {
             harddelete_notify();
             notify("Заполните все поля!", "error");
@@ -830,6 +782,17 @@ jQuery(document).ready(function () {
                 jQuery.each(categoriesAPI, function () {
                     currentDD.append(jQuery("<option />").val(this.id).text(this.name));
                 });
+                if(selectVal){
+                    CheckProjects(selectVal);
+                    jQuery('.els-row-' + rowsCount).find("select.el-name").addClass("glow");
+                    function sayHi() {
+                        jQuery('.els-row-' + rowsCount).find("select.el-name").removeClass("glow");
+                    }
+                    setTimeout(sayHi, 4000);
+                } else {
+                    CheckProjects();
+                }
+
                 currentDD.prop('disabled', false);
                 isLoading(0);
                 setTimeout(function () {
@@ -838,6 +801,10 @@ jQuery(document).ready(function () {
 
             }
         }
+    }
+
+    jQuery(".el-add-row-btn").on('click', function () {
+        addNewRow();
     })
 
     // Удаление строки
@@ -866,37 +833,6 @@ jQuery(document).ready(function () {
         getTotalPrice(); // пересчет итоговой цены
     })
 
-/*    jQuery(".btn-put-to-storage a").on("click", function (e) {
-        if (jQuery(this).hasClass("added")) {
-            e.preventDefault();
-            return false;
-        } else {
-            e.preventDefault();
-            let curSS = JSON.parse(sessionStorage.getItem('order'));
-            let temp = [];
-
-            let lsType = jQuery('.category--header h1').text(); //Название категории
-            let lsName = jQuery(this).parent().parent().parent().find('.woocommerce-loop-product__title').text(); //Название самой радиодетали
-            let lsId = jQuery(this).parent().parent().parent().find('.item--id').text(); //ID самой радиодетали
-            let lsCount = "1"; //Кол-во радиодеталей
-            let lsTypeOf = jQuery(this).parent().parent().parent().find('.itemcount').text(); //Мера исчисления (1 - кг, 2 - штуки)
-            let lsRowSum = jQuery(this).parent().parent().parent().find('.price_value').text(); //Сумма как (кол-во * меру исчисления)
-
-
-            if (curSS) {
-                temp = [lsId, lsType, lsName, lsCount, lsTypeOf, lsRowSum];
-                curSS.push(temp);
-                sessionStorage.setItem('order', JSON.stringify(curSS));
-                jQuery(".alertwindow").addClass("active").find(".textall").text("Всего деталей: " + curSS.length);
-            } else {
-                temp[0] = [lsId, lsType, lsName, lsCount, lsTypeOf, lsRowSum];
-                sessionStorage.setItem('order', JSON.stringify(temp));
-                jQuery(".alertwindow").addClass("active").find(".textall").text("Всего деталей: 1");
-            }
-
-            jQuery(this).addClass("added").text("Добавлено!");
-        }
-    });*/
 
     jQuery(".alertwindow .btn-close").click(function () {
         jQuery(".alertwindow").removeClass("active");
@@ -934,8 +870,6 @@ jQuery(document).ready(function () {
         } else {
             return false;
         }
-        /*
-    */
     });
 
 
@@ -947,31 +881,33 @@ jQuery(document).ready(function () {
         if (arr_lom.indexOf(dataval) !== -1) {
             jQuery(".opt").removeClass("active");
             jQuery(".opt1").addClass("active");
+            let $curElsRow = jQuery('.els-row-' + rowsCount);
+
+            if(($curElsRow.find(".el-name option:selected").attr('value')) && ($curElsRow.find(".el-name option:selected").attr('value').toString() != '9999')){
+                addNewRow(dataval);
+            } else {
+                CheckProjects(dataval);
+                $curElsRow.find("select.el-name").addClass("glow");
+                function sayHi() {
+                    $curElsRow.find("select.el-name").removeClass("glow");
+                }
+                setTimeout(sayHi, 4000);
+            }
         } else {
             jQuery(".opt").removeClass("active");
             jQuery(".opt2").addClass("active");
-        }
+            let $curElsRow = jQuery('.els-row-' + rowsCount);
 
-
-        if(jQuery('.els-row-' + rowsCount).find(".el-name option:selected").attr('value').toString() != '9999'){
-            jQuery(".el-add-row-btn").trigger('click');
-            jQuery(".els-row-"+rowsCount).find("select.el-name").addClass("glow");
-            function sayHi() {
-                jQuery(".els-row-"+rowsCount).find("select.el-name").removeClass("glow");
+            if(($curElsRow.find(".el-name option:selected").attr('value')) && ($curElsRow.find(".el-name option:selected").attr('value').toString() != '9999')){
+                addNewRow(dataval);
+            } else {
+                CheckProjects(dataval);
+                $curElsRow.find("select.el-name").addClass("glow");
+                function sayHi() {
+                    $curElsRow.find("select.el-name").removeClass("glow");
+                }
+                setTimeout(sayHi, 4000);
             }
-            setTimeout(sayHi, 4000);
-            jQuery(".els-row-"+rowsCount).find("select.el-type").val(dataval).prop('selected', true);
-
-            jQuery(".els-row-"+rowsCount).find("select.el-type").val(dataval).trigger('change');
-        } else {
-            jQuery(".els-row-"+rowsCount).find("select.el-name").addClass("glow");
-            function sayHi() {
-                jQuery(".els-row-"+rowsCount).find("select.el-name").removeClass("glow");
-            }
-            setTimeout(sayHi, 4000);
-            jQuery(".els-row-"+rowsCount).find("select.el-type").val(dataval).prop('selected', true);
-
-            jQuery(".els-row-"+rowsCount).find("select.el-type").val(dataval).trigger('change');
         }
     });
 
@@ -1026,27 +962,33 @@ jQuery(document).ready(function () {
     jQuery(".els-filter .opt").on('click', function () {
        jQuery(this).parent().find(".opt").removeClass("active");
         jQuery(this).addClass("active");
+        let $curElsRow = jQuery('.els-row-' + rowsCount);
+        console.log(rowsCount);
+        if(($curElsRow.find(".el-name option:selected").attr('value')) && ($curElsRow.find(".el-name option:selected").attr('value').toString() != '9999')){
+            jQuery(".el-add-row-btn").trigger('click');
+        } else {
+            CheckProjects();
+        }
     });
 
-    function CheckProjects(el) {
-        let $mel = el;
-        var arrVals = JSON.parse(jQuery('.opt.active').attr('data-vals'));
-        jQuery($mel).find('option').each(function () { //Loop through each option
-            var thisVal = parseInt(jQuery(this).val()); //Put the array of projects in a variable
-            if (jQuery.inArray(thisVal, arrVals) > -1) { //If current project ID is in array of projects
-                jQuery(this).show(); //Show the option
-            } else { // Else if current project ID is NOT in array of projects
-                jQuery(this).hide(); //hide the option
+    function CheckProjects(selectVal=null) {
+        console.log(rowsCount);
+        let $curElsRow = jQuery('.els-row-' + rowsCount);
+        let arrVals = JSON.parse(jQuery('.opt.active').attr('data-vals'));
+
+        $curElsRow.find("select.el-type").empty();
+        let lastId = 0;
+        jQuery.each(categoriesAPI, function (index) {
+            if (jQuery.inArray(categoriesAPI[index].id, arrVals) > -1) { //If current project ID is in array of projects
+                $curElsRow.find("select.el-type").append(jQuery("<option />").val(categoriesAPI[index].id).text(categoriesAPI[index].name));
+                lastId = categoriesAPI[index].id;
             }
         });
+        $curElsRow.find("select.el-type").val(lastId).trigger('change');
+        console.log(selectVal);
+        if(selectVal){
+
+            $curElsRow.find("select.el-type").val(selectVal).prop('selected', true).trigger('change');
+        }
     }
-
-    CheckProjects();
-    jQuery('body').on('mousedown', '.el-type', function() { //When we change the project, call the function
-        console.log("open");
-        let $el = jQuery(this);
-        CheckProjects($el);
-    });
-
-
 });

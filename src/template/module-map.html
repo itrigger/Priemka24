@@ -17,67 +17,41 @@
         </div>
     </div>
 </div>
-<script>
-    var sites = [
-        ['Москва', 55.5797031, 37.5985269, 1, '<div class="pic"><img alt="" src="/img/map.jpg"></div>'],
-  ];
-    var map;
 
 
+<script src="https://api-maps.yandex.ru/2.1?apikey=f84cdad7-7494-48e5-9737-c63faf7d970d&load=package.full&lang=ru_RU">
+</script>
+<script type="text/javascript">
+    ymaps.ready(function () {
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 18,
-            center: new google.maps.LatLng(55.5797031, 37.5985269),
-            mapTypeId: 'terrain',
-            disableDefaultUI: true,
-            // add back fullscreen, streetview, zoom
-            zoomControl: true,
-            zoomControlOptions: {
-                position: google.maps.ControlPosition.RIGHT_TOP
-            },
-            fullscreenControl: true
-        });
-        var image = "http://localhost:3000/img/marker.png";
-
-        var image2 = "http://localhost:3000/img/metro.svg";
-        var latLng2 = new google.maps.LatLng(55.581482, 37.596214);
-        var marker2 = new google.maps.Marker({
-            position: latLng2,
-            map: map,
-            icon: image2
+        var sites = [
+            ['Москва', 55.5797031, 37.5985269, 1, '<div class="pic"><img alt="" src="/img/map.jpg"></div>'],
+        ];
+        var myMap = new ymaps.Map("map", {
+            center: [55.580105, 37.598158],
+            zoom: 19
         });
 
-        var eqfeed_callback = function eqfeed_callback(sites) {
-            var _loop = function _loop(i) {
-                var latLng = new google.maps.LatLng(sites[i][1], sites[i][2]);
-                var marker = new google.maps.Marker({
-                    position: latLng,
-                    map: map,
-                    icon: image
-                });
+        var myPlacemark = new ymaps.Placemark([55.580105, 37.598158], {}, {
+            iconLayout: 'default#image',
+            iconImageHref: 'http://localhost:3000/img/marker.png',
+            iconImageSize: [30, 42],
+            iconImageOffset: [-3, -42]
+        });
+        var myPlacemark2 = new ymaps.Placemark([55.580201, 37.597497], {}, {
+            iconLayout: 'default#image',
+            iconImageHref: 'http://localhost:3000/img/metro.svg',
+            iconImageSize: [30, 42],
+            iconImageOffset: [-3, -42]
+        });
+        // Размещение геообъекта на карте.
+        myMap.geoObjects.add(myPlacemark);
+        myMap.geoObjects.add(myPlacemark2);
 
-                marker.addListener('click', function () {
-                    jQuery('.map_bubble .wrapper').html(sites[i][4]).parent().addClass('open');
-                    map.setCenter({
-                        lat: sites[i][1],
-                        lng: sites[i][2]
-                    });
-                    map.setZoom(18);
-                });
-            };
+        myPlacemark.events.add('click', function () {
+            jQuery('.map_bubble .wrapper').html(sites[0][4]).parent().addClass('open');
+        });
 
-            for (var i = 0; i < sites.length; i++) {
-                _loop(i);
-            }
-        };
-
-        eqfeed_callback(sites);
-    }
-
-
-
+    });
 </script>
-<script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR_HUJMe8wk2KiPMdWal1J02B0N_0MSVU&callback=initMap">
-</script>
+
