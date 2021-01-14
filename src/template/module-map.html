@@ -1,29 +1,18 @@
-<div class="main-page-map">
-<h1>Скупка радиодеталей в
-    <div class="selector main-page-map--selector">
-        <div class="selector-title"><span>Симферополе</span></div>
-        <ul class="selector-dd">
-            <li data-lat="55.7922129" data-lng="37.4944932"><span data-title="Москве">Москва</span></li>
-            <li data-lat="59.864526" data-lng="30.4673039"><span data-title="Санкт-Петербурге">Санкт-Петербург</span></li>
-            <li data-lat="45.0974759" data-lng="38.9753053"><span data-title="Краснодаре">Краснодар</span></li>
-            <li data-lat="44.0546225" data-lng="42.8988972"><span data-title="Ессентуках">Ессентуки</span></li>
-            <li class="active" data-lat="44.9667273" data-lng="34.108616"><span data-title="Симферополе">Симферополь</span></li>
-            <li data-lat="51.6584213" data-lng="39.1874443"><span data-title="Воронеже">Воронеж</span></li>
-            <li data-lat="56.2906501" data-lng="44.0405924"><span data-title="Нижнем Новгороде">Нижний Новгород</span></li>
-            <li data-lat="56.8431039" data-lng="53.206947"><span data-title="Ижевске">Ижевск</span></li>
-            <li data-lat="53.2018621" data-lng="44.9945709"><span data-title="Пензе">Пенза</span></li>
-            <li data-lat="55.8348211" data-lng="49.0864087"><span data-title="Казани">Казань</span></li>
-        </ul>
-    </div>
-</h1>
-</div>
-
 <div class="mod-map">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 xs-col-4">
+                <h2>Мы тут</h2>
+            </div>
+        </div>
+    </div>
     <div class="map_bubble">
         <div class="close"></div>
-        <div class="wrapper"></div>
+        <div class="wrapper">
+
+        </div>
     </div>
-<div id="map"></div>
+    <div id="map"></div>
 </div>
 <div class="container mobile maninblack">
     <div class="row">
@@ -42,87 +31,35 @@
 <script src="https://api-maps.yandex.ru/2.1?apikey=f84cdad7-7494-48e5-9737-c63faf7d970d&load=package.full&lang=ru_RU">
 </script>
 <script type="text/javascript">
-
-
     ymaps.ready(function () {
 
         var sites = [
-            ['Москва', 55.7922129, 37.4944932, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Москва, ул. Маршала Бирюзова&nbsp;д. 8, корпус&nbsp;1, Метро Октябрьское поле</div><div class="tel"><a href="tel:89854708800">8 (985) 470 88 00</a></div><div class="email"><a href="mailto:moscow@sxematika.ru">moscow@sxematika.ru</a></div></div>', '<div class="desc"><div class="title">Маршала Бирюзова&nbsp;д.&nbsp;8, корпус&nbsp;1, Метро Октябрьское поле</div></div>'],
-            ['Санкт-Петербург', 59.864526, 30.4673039, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Санкт-Петербург, пр-т Обуховской Обороны, д.&nbsp;217</div><div class="tel"><a href="tel:89151833096">8 (915) 183 30 96</a></div><div class="email"><a href="mailto:piter@sxematika.ru">piter@sxematika.ru</a></div></div>'],
-            ['Краснодар', 45.0974759, 38.9753053, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Краснодар, ул.&nbsp;Кореновская,&nbsp;д.&nbsp;32</div><div class="tel"><a href="tel:89184411105">8 (918) 441 11 05</a></div><div class="email"><a href="mailto:krasnodar@sxematika.ru">krasnodar@sxematika.ru</a></div></div>'],
-            ['Ессентуки', 44.0546225, 42.8988972, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Ессентуки, ул.&nbsp;Пятигорская,&nbsp;д.&nbsp;135</div><div class="tel"><a href="tel:89151832322">8 (915) 183 23 22</a></div><div class="email"><a href="mailto:essentuki@sxematika.ru">essentuki@sxematika.ru</a></div></div>'],
-            ['Симферополь', 44.9667273, 34.108616, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Симферополь, ул.&nbsp;Садовая,&nbsp;д.&nbsp;5</div><div class="tel"><a href="tel:89151833180">8 (915) 183 31 80</a></div><div class="email"><a href="mailto:simferopol@sxematika.ru">simferopol@sxematika.ru</a></div></div>'],
-            ['Воронеж', 51.6584213, 39.1874443, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Воронеж, ул.&nbsp;Пушкинская,&nbsp;д.&nbsp;36</div><div class="tel"><a href="tel:89151833143">8 (915) 183 31 43</a></div><div class="email"><a href="mailto:voronezh@sxematika.ru">voronezh@sxematika.ru</a></div></div>'],
-            ['Нижний Новгород', 56.2906501, 44.0405924, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Нижний Новгород, ул.&nbsp;Вячеслава Шишкова,&nbsp;д.&nbsp;1</div><div class="tel"><a href="tel:89151832952">8 (915) 183 29 52</a></div><div class="email"><a href="mailto:nizhnii@sxematika.ru">nizhnii@sxematika.ru</a></div></div>'],
-            ['Ижевск', 56.8431039, 53.206947, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Ижевск, ул.&nbsp;Красноармейская,&nbsp;д.&nbsp;135</div><div class="tel"><a href="tel:89151832803">8 (915) 183 28 03</a></div><div class="email"><a href="mailto:izhevsk@sxematika.ru">izhevsk@sxematika.ru</a></div></div>'],
-            ['Пенза', 53.2018621, 44.9945709, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Пенза ,ул.&nbsp;Суворова, д.&nbsp;143а</div><div class="tel"><a href="tel:89151832791">8 (915) 183 27 91</a></div><div class="email"><a href="mailto:penza@sxematika.ru">penza@sxematika.ru</a></div></div>'],
-            ['Казань', 55.8348211, 49.0864087, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Казань, ул.&nbsp;Восстания, д.&nbsp;28</div><div class="tel"><a href="tel:89151832603">8 (915) 183 26 03</a></div><div class="email"><a href="mailto:kazan@sxematika.ru">kazan@sxematika.ru</a></div></div>'],
-            ['Москва2', 55.6999574, 37.9299035, 1, '<div class="pic"><img alt="" src="/wp-content/themes/sxematika/assets/img/map_legend_pic-04.jpg"></div><div class="desc"><div class="title">Москва, ул.&nbsp;Недорубова, д.&nbsp;5, метро Некрасовка</div><div class="tel"><a href="tel:89013317104">8 (901) 331 71 04</a></div><div class="email"><a href="mailto:moscow1@sxematika.ru">moscow1@sxematika.ru</a></div></div>', '<div class="desc"><div class="title">ул. Недорубова, д.&nbsp;5, метро Некрасовка</div>'],
+            ['Москва', 55.579938826718134, 37.598032975882674, 1, '<div class="pic"><img alt="" src="/wp-content/themes/priemka/assets/img/map.jpg"><div class="desc"><div class="left"><span class="ico-map">Москва, Варшавское шоссе 145 корпус 2, метро Аннино</div><div class="right"><a class="ico-tel" href="tel:89151832735">+7 915 183 27 35</a></div></div></div>'],
         ];
-
-
         var myMap = new ymaps.Map("map", {
-            center: [51.6584213, 39.1874443],
-            zoom: 14
+            center: [55.580105, 37.598158],
+            zoom: 19
         });
 
-          var eqfeed_callback = function eqfeed_callback(sites) {
-            var _loop = function _loop(i) {
-
-                var myPlacemark = new ymaps.Placemark([sites[i][1], sites[i][2]], {}, {
-                    iconLayout: 'default#image',
-                    iconImageHref: 'http://localhost:3000/img/marker.png',
-                    iconImageSize: [30, 42],
-                    iconImageOffset: [-3, -42]
-                });
-
-                myMap.geoObjects.add(myPlacemark);
-
-                if(sites[i][0] === 'Москва') {
-                    myPlacemark.properties.set('hintContent', sites[i][5]);
-                   /* myPlacemark.balloon.open();*/
-                   /* myMap.hint.open([sites[i][1], sites[i][2]], sites[i][5], {
-
-                    });*/
-                }
-
-                if(sites[i][0] === 'Москва2') {
-                    myPlacemark.properties.set('hintContent', sites[i][5]);
-                }
+        var myPlacemark = new ymaps.Placemark([55.580105, 37.598158], {}, {
+            iconLayout: 'default#image',
+            iconImageHref: 'https://priemkm.ru/wp-content/themes/priemka/assets/img/marker.png',
+            iconImageSize: [35, 60],
+            iconImageOffset: [-3, -42]
+        });
+        var myPlacemark2 = new ymaps.Placemark([55.580201, 37.597497], {}, {
+            iconLayout: 'default#image',
+            iconImageHref: 'https://priemkm.ru/wp-content/themes/priemka/assets/img/metro2.png',
+            iconImageSize: [66, 65],
+            iconImageOffset: [-3, -42]
+        });
+        // Размещение геообъекта на карте.
+        myMap.geoObjects.add(myPlacemark2);
+        myMap.geoObjects.add(myPlacemark);
 
 
-
-                myPlacemark.events.add('click', function () {
-                    jQuery('.map_bubble .wrapper').html(sites[i][4]).parent().addClass('open');
-                    myMap.setCenter([sites[i][1], sites[i][2]]);
-                });
-
-
-            };
-
-            for (var i = 0; i < sites.length; i++) {
-                _loop(i);
-            }
-        };
-
-        eqfeed_callback(sites);
-
-        jQuery(".main-page-map .selector-dd li").on("click", function () {
-            jQuery(this).parent().parent().find(".selector-title span").text(jQuery(this).find("span").attr("data-title"));
-            jQuery(this).parent().find("li").each(function () {
-                jQuery(this).removeClass("active");
-            });
-            jQuery(this).addClass("active");
-            var indexx = $(this).index();
-            jQuery(".map_bubble").html(sites[indexx][4]);
-            var tlat = parseFloat($(this).attr("data-lat"));
-            var tlng = parseFloat($(this).attr("data-lng"));
-            myMap.setCenter([tlat, tlng]);
-            if(indexx !== 0){
-                myMap.setZoom(12);
-            } else {
-                myMap.setZoom(9);
-            }
+        myPlacemark.events.add('click', function () {
+            jQuery('.map_bubble .wrapper').html(sites[0][4]).parent().addClass('open');
         });
 
     });

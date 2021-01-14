@@ -102,8 +102,8 @@ jQuery(document).ready(function () {
     let EUR = 1 / stock_eur * stock_rub;
     let STOCK_DATE = stock_date.toString();
     const TYPES = ["кг", "шт", "г", "кольцо", "секция", "2 секции", "контакт", "гр"];
-    //const CONST_HOST = "https://priemkm.ru";
-    const CONST_HOST = window.location.origin;
+    const CONST_HOST = "https://priemkm.ru";
+   // const CONST_HOST = window.location.origin;
     console.log(CONST_HOST);
     const CONST_CK = 'ck_1a2af9ee2ad6e3ac6a0f9237cebfcc62ad4a88a5';
     const CONST_CS = 'cs_fc757c4e40772bd4cb6b5f36c8a81bf33504395f';
@@ -990,5 +990,16 @@ jQuery(document).ready(function () {
 
             $curElsRow.find("select.el-type").val(selectVal).prop('selected', true).trigger('change');
         }
-    }
+    };
+
+
+    /*categories popup on menu click*/
+    $(".ico-mob-catalog").on("click", function () {
+        $("#cat_popup_menu").css("display","block");
+    });
+
+    $("#cat_popup_menu .close_btn").on("click", function () {
+        $("#cat_popup_menu").css("display","none");
+    });
+
 });
