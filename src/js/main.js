@@ -186,6 +186,59 @@ jQuery(document).ready(function () {
 
     updateStocksHTML();
 
+    /* Add fancybox to product img */
+    if ($(".catalog--products").length > 0) {
+        $(".catalog--products-ul .product img.attachment-woocommerce_thumbnail").on('click', function () {
+            $.fancybox.open({
+                src: $(this).attr('src'),
+                type: 'image',
+                toolbar: false,
+                beforeShow: function (instance, current) {
+                    $(".fancybox-toolbar").css("display", "none");
+                },
+                afterShow: function (instance, current) {
+                    $(".fancybox-content").prepend("<div class='fancy_close'><svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1\" viewBox=\"0 0 24 24\"><path d=\"M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z\"></path></svg></div>");
+                    $(".fancy_close").on('click', function () {
+                        instance.close();
+                    })
+                },
+                clickContent: 'close',
+                clickSlide: "close",
+                buttons: ['close'],
+                touch: false
+                //fancybox-content
+            });
+        });
+
+        //Высчитываем цену товара, данные для цены выводим с помощью php и ACF
+        $(".catalog--products-ul .product").each(function () {
+            let item_gold = $(this).find(".item--gold").text();
+            let item_silver = $(this).find(".item--silver").text();
+            let item_platinum = $(this).find(".item--platinum").text();
+            let item_palladium = $(this).find(".item--palladium").text();
+            let item_typecount = $(this).find(".item--typeofcount").text();
+            let item_fixprice = $(this).find(".item--fixprice").text();
+            let item_price;
+            // Основная формула для каждого города и металла есть поправочный кэф
+            if (item_fixprice > 0) {
+                if (item_fixprice == "999999") {
+                    $(this).find(".price").text("договорная");
+                    $(this).find(".btn-put-to-storage").css("display", "none");
+                } else {
+                    $(this).find(".price .price_value").text(item_fixprice);
+                }
+            } else {
+                // З -40%, С -30%, Пл -30%, Пал -30%
+                item_price = (item_gold * GOLD * GOLD_DISCOUNT + item_silver * SILVER * SILVER_DISCOUNT + item_platinum * PLATINUM * PLATINUM_DISCOUNT + item_palladium * PALLADIUM * PALLADIUM_DISCOUNT) * USD;
+                // З -50%, С -35%, Пл -30%, Пал -35% (ост города)
+                $(this).find(".price .price_value").text(Math.round((item_price + Number.EPSILON) * 100) / 100);
+            }
+            $(this).find(".itemcount").text(TYPES[item_typecount - 1]);
+        })
+    }
+
+
+
     if (jQuery(".print--ul").length > 0) {
         jQuery(".print--ul").each(function () {
             let item_gold = jQuery(this).find(".item--gold").text();
@@ -271,7 +324,7 @@ jQuery(document).ready(function () {
         }
     }
 
-    if (jQuery("body").hasClass("home")) {
+    if (jQuery(".calculator").length) {
         // первоначальный запрос при загрузке страницы, чтобы заполнить первый селект данными
         fetch(`${CONST_HOST}/wp-json/wc/v3/products/categories?consumer_key=${CONST_CK}&consumer_secret=${CONST_CS}&exclude=15&per_page=100`)
             .then(
@@ -831,11 +884,42 @@ jQuery(document).ready(function () {
         rowsCount = rowsCount - 1;
 
         getTotalPrice(); // пересчет итоговой цены
-    })
+    });
+
+    $(".btn-put-to-storage a").on("click", function (e) {
+        if ($(this).hasClass("added")) {
+            e.preventDefault();
+            return false;
+        } else {
+            e.preventDefault();
+            let curSS = JSON.parse(sessionStorage.getItem('order'));
+            let temp = [];
+
+            let lsType = $('.category--header h1').text(); //Название категории
+            let lsName = $(this).parent().parent().parent().find('.woocommerce-loop-product__title').text(); //Название самой радиодетали
+            let lsId = $(this).parent().parent().parent().parent().find('.item--id').text(); //ID самой радиодетали
+            let lsCount = "1"; //Кол-во радиодеталей
+            let lsTypeOf = $(this).parent().parent().parent().find('.itemcount').text(); //Мера исчисления (1 - кг, 2 - штуки)
+            let lsRowSum = $(this).parent().parent().parent().find('.price_value').text(); //Сумма как (кол-во * меру исчисления)
 
 
-    jQuery(".alertwindow .btn-close").click(function () {
-        jQuery(".alertwindow").removeClass("active");
+            if (curSS) {
+                temp = [lsId, lsType, lsName, lsCount, lsTypeOf, lsRowSum];
+                curSS.push(temp);
+                sessionStorage.setItem('order', JSON.stringify(curSS));
+                $(".alertwindow").addClass("active").find(".textall").text("Всего деталей: " + curSS.length);
+            } else {
+                temp[0] = [lsId, lsType, lsName, lsCount, lsTypeOf, lsRowSum];
+                sessionStorage.setItem('order', JSON.stringify(temp));
+                $(".alertwindow").addClass("active").find(".textall").text("Всего деталей: 1");
+            }
+
+            $(this).addClass("added").text("Добавлено!");
+        }
+    });
+
+    $(".alertwindow .btn-close").click(function () {
+        $(".alertwindow").removeClass("active");
     });
 
     //Заполняем скрытые поля в форме ContactForm7 данными из локального хранилища
