@@ -5,10 +5,13 @@ body{
   font-family: "Open Sans", sans-serif;
   color: $black;
   background: $body-bg;
-  //background: url("../img/temp.jpg") center 0 no-repeat $body-bg;
   & *{
     box-sizing: border-box;
   }
+}
+
+body:not(.home){
+  background: #fff;
 }
 
 @media (max-width: 1180px) {
@@ -36,3 +39,4 @@ body{
 @import "parts/_footer";
 @import "parts/_pdf";
 @import "parts/_parallax";
+@import "parts/_catalog";

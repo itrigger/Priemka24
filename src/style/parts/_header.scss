@@ -50,17 +50,24 @@ header.header{
     @include pseudo("ico-calc.svg",25,25,0,-4);
   }
 }
-.ico-pay{
+.top-nav .ico-mob-catalog{
   display: block;
   position: relative;
   text-decoration: none;
   color: $black;
   font-size: 12px;
   line-height: 18px;
-  padding-left: 29px;
-  &:after{
-    @include pseudo("ico-credit_card.svg",24,24,0,-4);
+  padding-left: 26px;
+  &:before{
+    @include pseudo("ico-mob-price.svg", 19, 24, 0, -2);
   }
+}
+.top-nav a{
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: $black;
+  font-size: 12px;
 }
 
 .top-contacts{
@@ -190,6 +197,32 @@ header.header{
   position: relative;
   &:before{
     @include pseudo("ico-mob-whatsapp.svg", 20, 20, null, -1, 0);
+  }
+}
+
+#cat_popup_menu{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: $yellow;
+  z-index: 99999;
+  padding: 50px;
+  display: none;
+  a{
+    color: #fff;
+    font-size: 24px;
+  }
+  .close_btn{
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }
 
