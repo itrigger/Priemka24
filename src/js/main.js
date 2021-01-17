@@ -231,7 +231,7 @@ jQuery(document).ready(function () {
                 // З -40%, С -30%, Пл -30%, Пал -30%
                 item_price = (item_gold * GOLD * GOLD_DISCOUNT + item_silver * SILVER * SILVER_DISCOUNT + item_platinum * PLATINUM * PLATINUM_DISCOUNT + item_palladium * PALLADIUM * PALLADIUM_DISCOUNT) * USD;
                 // З -50%, С -35%, Пл -30%, Пал -35% (ост города)
-                $(this).find(".price .price_value").text(Math.round((item_price + Number.EPSILON) * 100) / 100);
+                $(this).find(".price .price_value").text((Math.round(item_price + Number.EPSILON) * 1));
             }
             $(this).find(".itemcount").text(TYPES[item_typecount - 1]);
         })
@@ -259,7 +259,7 @@ jQuery(document).ready(function () {
                 // З -40%, С -30%, Пл -30%, Пал -30%
                 item_price = (item_gold * GOLD * GOLD_DISCOUNT + item_silver * SILVER * SILVER_DISCOUNT + item_platinum * PLATINUM * PLATINUM_DISCOUNT + item_palladium * PALLADIUM * PALLADIUM_DISCOUNT) * USD;
                 // З -50%, С -35%, Пл -30%, Пал -35% (ост города)
-                jQuery(this).find(".price .price_value").text(Math.round((item_price + Number.EPSILON) * 100) / 100);
+                jQuery(this).find(".price .price_value").text(Math.round((item_price + Number.EPSILON) * 1));
             }
             jQuery(this).find(".itemcount").text(TYPES[item_typecount - 1]);
 
@@ -1030,7 +1030,7 @@ jQuery(document).ready(function () {
         } );
 
         /*степпер для калькулятора*/
-        jQuery(".calculator").on('click', '.stepper-step', function (e) {
+        jQuery(".stepper-step").on('click', function (e) {
             let curval = parseFloat(jQuery(this).parent().find("input").val());
           if(e.target.classList[1] === "up"){
                 jQuery(this).parent().find("input").val(curval + 1).trigger("input");
