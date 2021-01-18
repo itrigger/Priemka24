@@ -226,12 +226,14 @@ jQuery(document).ready(function () {
                     $(this).find(".btn-put-to-storage").css("display", "none");
                 } else {
                     $(this).find(".price .price_value").text(item_fixprice);
+                    $(this).find(".row-total span").text(item_fixprice);
                 }
             } else {
                 // З -40%, С -30%, Пл -30%, Пал -30%
                 item_price = (item_gold * GOLD * GOLD_DISCOUNT + item_silver * SILVER * SILVER_DISCOUNT + item_platinum * PLATINUM * PLATINUM_DISCOUNT + item_palladium * PALLADIUM * PALLADIUM_DISCOUNT) * USD;
                 // З -50%, С -35%, Пл -30%, Пал -35% (ост города)
                 $(this).find(".price .price_value").text((Math.round(item_price + Number.EPSILON) * 1));
+                $(this).find(".row-total span").text((Math.round(item_price + Number.EPSILON) * 1));
             }
             $(this).find(".itemcount").text(TYPES[item_typecount - 1]);
         })
@@ -501,25 +503,25 @@ jQuery(document).ready(function () {
                     notify("Возникла ошибка при получении данных! Попробуйте перезагрузить страницу или зайти позже.", "error");
                 });
         }
-    }
+    };
 
     //run function on dynamic els
     $parentEl.on('change', '.el-type', function () {
         let id = jQuery(this).parent().parent().attr("data-id");
         fillChildSelect(id);
-    })
+    });
 
     $parentEl.on('change', '.el-name', function () {
         let id = jQuery(this).parent().parent().attr("data-id");
         getPrice(id);
-    })
+    });
 
     $parentEl.on('input', '.inputCount', function () {
         let id = jQuery(this).parent().parent().parent().parent().attr("data-id");
         let $errorInput = jQuery('.inputCount-' + id);
         harddelete_notify($errorInput);
         getPrice(id);
-    })
+    });
 
 
     // calculate total price
@@ -528,7 +530,7 @@ jQuery(document).ready(function () {
         $parentEl.find('.row-total').each(function () {
             let temp = parseFloat(jQuery(this).find('span').text());
             totalPrice += temp;
-        })
+        });
         if (totalPrice > 0) {
             jQuery(".els-total-price-num span").text(totalPrice.toFixed(0));
         } else {
@@ -536,7 +538,7 @@ jQuery(document).ready(function () {
         }
 
         saveToLS();
-    }
+    };
 
     // сохраняем данные в локальное хранилище
     const saveToLS = function () {
@@ -559,7 +561,7 @@ jQuery(document).ready(function () {
 
         sessionStorage.setItem('order', JSON.stringify(temp)); //превращаем все данные в строку и сохраняем в локальное хранилище
 
-    }
+    };
 
     //Удаление строки из локального хранилища
     const removeFromLS = function (rowID) {
@@ -886,11 +888,13 @@ jQuery(document).ready(function () {
         getTotalPrice(); // пересчет итоговой цены
     });
 
+
+    //Добавление в калькулятор данных с карточки товара
     $(".btn-put-to-storage a").on("click", function (e) {
-        if ($(this).hasClass("added")) {
+        /*if ($(this).hasClass("added")) {
             e.preventDefault();
             return false;
-        } else {
+        } else {*/
             e.preventDefault();
             let curSS = JSON.parse(sessionStorage.getItem('order'));
             let temp = [];
@@ -898,13 +902,21 @@ jQuery(document).ready(function () {
             let lsType = $('.category--header h1').text(); //Название категории
             let lsName = $(this).parent().parent().parent().find('.woocommerce-loop-product__title').text(); //Название самой радиодетали
             let lsId = $(this).parent().parent().parent().parent().find('.item--id').text(); //ID самой радиодетали
-            let lsCount = "1"; //Кол-во радиодеталей
+            let lsCount = $(this).parent().parent().parent().find('.inputCount').val(); //Кол-во радиодеталей
             let lsTypeOf = $(this).parent().parent().parent().find('.itemcount').text(); //Мера исчисления (1 - кг, 2 - штуки)
-            let lsRowSum = $(this).parent().parent().parent().find('.price_value').text(); //Сумма как (кол-во * меру исчисления)
-
+            let lsRowSum = $(this).parent().parent().parent().parent().find('.row-total span').text(); //Сумма
 
             if (curSS) {
                 temp = [lsId, lsType, lsName, lsCount, lsTypeOf, lsRowSum];
+
+                curSS.forEach((element, index) => {
+                    if(element[0] === lsId){
+                        console.log(element);
+                        curSS.splice(index,1);
+
+                    }
+                });
+
                 curSS.push(temp);
                 sessionStorage.setItem('order', JSON.stringify(curSS));
                 $(".alertwindow").addClass("active").find(".textall").text("Всего деталей: " + curSS.length);
@@ -914,9 +926,24 @@ jQuery(document).ready(function () {
                 $(".alertwindow").addClass("active").find(".textall").text("Всего деталей: 1");
             }
 
-            $(this).addClass("added").text("Добавлено!");
-        }
+
+            //saveToLS();
+
+            /* ToDo
+                Показать алерт, что товар добавлен в список
+            */
+
+            //$(this).addClass("added").text("Добавлено!");
+       /* }*/
     });
+
+    /*подсчет суммы для карточки товара*/
+    $(".catalog--products-ul .product").on('input', '.inputCount', function () {
+        let itemCol = $(this).val();
+        let itemPrice = $(this).parent().parent().parent().parent().parent().find(".price_value").text();
+        $(this).parent().parent().parent().parent().find(".row-total span").text(itemPrice * itemCol);
+    });
+
 
     $(".alertwindow .btn-close").click(function () {
         $(".alertwindow").removeClass("active");
@@ -1040,6 +1067,8 @@ jQuery(document).ready(function () {
               }
            }
         });
+
+
 
 
      /*фильтр селекта*/

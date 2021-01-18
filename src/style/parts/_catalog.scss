@@ -4,21 +4,7 @@
     line-height: 55px;
     font-weight: 800;
     margin-bottom: 50px;
-  }
-}
-
-.breadcrumbs{
-  ul{
-    margin: 0;
-    padding: 0;
-    li{
-      margin-bottom: 5px;
-      display: inline-block;
-      margin-right: 5px;
-      a{
-
-      }
-    }
+    margin-top: 30px;
   }
 }
 
@@ -103,11 +89,11 @@
 
 .product--input-w{
   display: flex;
-  flex-basis: 50%;
+  flex-basis: 47%;
   align-items: flex-end;
   input[type=number],
   input[type=text]{
-    height: 40px;
+    height: 45px;
     border-radius: 5px;
     border: none;
     width: 105px;
@@ -119,15 +105,16 @@
   .labeled-input{
     .label{
       display: block;
+      margin-bottom: 3px;
     }
     .inputCountWrap{
       margin-left: 0;
     }
     .row-total{
-      height: 40px;
+      height: 45px;
       border-radius: 5px;
       border: none;
-      width: 105px;
+      width: 125px;
       padding: 0 17px;
       display: flex;
       align-items: center;
@@ -137,9 +124,12 @@
   }
 }
 .btns-wrapper{
-  flex-basis: 50%;
+  flex-basis: 53%;
   .btn-put-to-storage{
     margin-right: 14px;
+    .btn-ico{
+      padding-left: 40px;
+    }
   }
 }
 .price_w{
@@ -147,12 +137,12 @@
   flex-direction: row;
   align-items: baseline;
   .title{
-    width: 50%;
+    width: 47%;
     font-size: 24px;
     line-height: 31px;
   }
  .price{
-   width: 50%;
+   width: 53%;
    font-size: 48px;
    line-height: 62px;
  }

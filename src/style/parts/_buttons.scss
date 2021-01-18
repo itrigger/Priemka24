@@ -70,6 +70,12 @@
     @include pseudo("ico-download.svg", 12, 18, 27, 13);
   }
 }
+.btn-ico-download-white{
+  position: relative;
+  &:before {
+    @include pseudo("ico-download-w.svg", 20, 20, 12, 13);
+  }
+}
 .btn-ico-money{
   position: relative;
   padding-left: 55px;
