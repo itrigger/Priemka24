@@ -30,6 +30,10 @@
           color: #000;
         }
       }
+      &.active a{
+        color: #000;
+        font-weight: 800;
+      }
     }
   }
 }
@@ -189,6 +193,9 @@
    width: 53%;
    font-size: 48px;
    line-height: 62px;
+   &.special{
+     font-size: 24px;
+   }
  }
 }
 
