@@ -1,14 +1,29 @@
 .breadcrumbs{
+  margin-top: 15px;
   ul{
     margin: 0;
     padding: 0;
     li{
       margin-bottom: 5px;
       display: inline-block;
-      margin-right: 5px;
+      margin-right: 10px;
       font-size: 14px;
+      color: #555555;
       a{
         font-size: inherit;
+        position: relative;
+        color: #555555;
+        &:after{
+          display: block;
+          position: absolute;
+          right: -10px;
+          top: -5px;
+          content: "/";
+          color: #555555;
+          font-size: 14px;
+          line-height: 32px;
+          text-decoration: none;
+        }
       }
     }
   }

@@ -13,6 +13,7 @@
   background: #F0CB07;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  margin-bottom: 38px;
   ul{
     padding: 0;
     margin: 0;
@@ -24,6 +25,7 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         text-decoration: none;
+        font-weight: 600;
         &:hover{
           color: #000;
         }
@@ -32,7 +34,49 @@
   }
 }
 
+.block_list{
+  padding: 16px 16px 0;
+  background: #F0CB07;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  width: 265px;
+  .heading{
+    font-size: 17px;
+    line-height: 22px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-right: 50px;
+    position: relative;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    &:after{
+      @include pseudo("ico-inbox.svg", 40, 44, null, 0, 0);
+    }
+  }
+  .desc{
+    font-size: 16px;
+    line-height: 30px;
+    color: #555555;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .sum{
+    font-size: 48px;
+    line-height: 57px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+  }
+  .btn{
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+}
 
+.fixed {
+  position: fixed;
+}
 
 /*items*/
 .catalog--products-ul{

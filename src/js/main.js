@@ -187,18 +187,18 @@ jQuery(document).ready(function () {
     updateStocksHTML();
 
     /* Add fancybox to product img */
-    if ($(".catalog--products").length > 0) {
-        $(".catalog--products-ul .product img.attachment-woocommerce_thumbnail").on('click', function () {
-            $.fancybox.open({
-                src: $(this).attr('src'),
+    if (jQuery(".catalog--products").length > 0) {
+        jQuery(".catalog--products-ul .product img.attachment-woocommerce_thumbnail").on('click', function () {
+            jQuery.fancybox.open({
+                src: jQuery(this).attr('src'),
                 type: 'image',
                 toolbar: false,
                 beforeShow: function (instance, current) {
-                    $(".fancybox-toolbar").css("display", "none");
+                    jQuery(".fancybox-toolbar").css("display", "none");
                 },
                 afterShow: function (instance, current) {
-                    $(".fancybox-content").prepend("<div class='fancy_close'><svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1\" viewBox=\"0 0 24 24\"><path d=\"M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z\"></path></svg></div>");
-                    $(".fancy_close").on('click', function () {
+                    jQuery(".fancybox-content").prepend("<div class='fancy_close'><svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1\" viewBox=\"0 0 24 24\"><path d=\"M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z\"></path></svg></div>");
+                    jQuery(".fancy_close").on('click', function () {
                         instance.close();
                     })
                 },
@@ -211,31 +211,31 @@ jQuery(document).ready(function () {
         });
 
         //Высчитываем цену товара, данные для цены выводим с помощью php и ACF
-        $(".catalog--products-ul .product").each(function () {
-            let item_gold = $(this).find(".item--gold").text();
-            let item_silver = $(this).find(".item--silver").text();
-            let item_platinum = $(this).find(".item--platinum").text();
-            let item_palladium = $(this).find(".item--palladium").text();
-            let item_typecount = $(this).find(".item--typeofcount").text();
-            let item_fixprice = $(this).find(".item--fixprice").text();
+        jQuery(".catalog--products-ul .product").each(function () {
+            let item_gold = jQuery(this).find(".item--gold").text();
+            let item_silver = jQuery(this).find(".item--silver").text();
+            let item_platinum = jQuery(this).find(".item--platinum").text();
+            let item_palladium = jQuery(this).find(".item--palladium").text();
+            let item_typecount = jQuery(this).find(".item--typeofcount").text();
+            let item_fixprice = jQuery(this).find(".item--fixprice").text();
             let item_price;
             // Основная формула для каждого города и металла есть поправочный кэф
             if (item_fixprice > 0) {
                 if (item_fixprice == "999999") {
-                    $(this).find(".price").text("договорная");
-                    $(this).find(".btn-put-to-storage").css("display", "none");
+                    jQuery(this).find(".price").text("договорная");
+                    jQuery(this).find(".btn-put-to-storage").css("display", "none");
                 } else {
-                    $(this).find(".price .price_value").text(item_fixprice);
-                    $(this).find(".row-total span").text(item_fixprice);
+                    jQuery(this).find(".price .price_value").text(item_fixprice);
+                    jQuery(this).find(".row-total span").text(item_fixprice);
                 }
             } else {
                 // З -40%, С -30%, Пл -30%, Пал -30%
                 item_price = (item_gold * GOLD * GOLD_DISCOUNT + item_silver * SILVER * SILVER_DISCOUNT + item_platinum * PLATINUM * PLATINUM_DISCOUNT + item_palladium * PALLADIUM * PALLADIUM_DISCOUNT) * USD;
                 // З -50%, С -35%, Пл -30%, Пал -35% (ост города)
-                $(this).find(".price .price_value").text((Math.round(item_price + Number.EPSILON) * 1));
-                $(this).find(".row-total span").text((Math.round(item_price + Number.EPSILON) * 1));
+                jQuery(this).find(".price .price_value").text((Math.round(item_price + Number.EPSILON) * 1));
+                jQuery(this).find(".row-total span").text((Math.round(item_price + Number.EPSILON) * 1));
             }
-            $(this).find(".itemcount").text(TYPES[item_typecount - 1]);
+            jQuery(this).find(".itemcount").text(TYPES[item_typecount - 1]);
         })
     }
 
@@ -860,7 +860,7 @@ jQuery(document).ready(function () {
 
     jQuery(".el-add-row-btn").on('click', function () {
         addNewRow();
-    })
+    });
 
     // Удаление строки
     $parentEl.on('click', '.els-del', function () {
@@ -890,7 +890,7 @@ jQuery(document).ready(function () {
 
 
     //Добавление в калькулятор данных с карточки товара
-    $(".btn-put-to-storage a").on("click", function (e) {
+    jQuery(".btn-put-to-storage a").on("click", function (e) {
         /*if ($(this).hasClass("added")) {
             e.preventDefault();
             return false;
@@ -899,12 +899,12 @@ jQuery(document).ready(function () {
             let curSS = JSON.parse(sessionStorage.getItem('order'));
             let temp = [];
 
-            let lsType = $('.category--header h1').text(); //Название категории
-            let lsName = $(this).parent().parent().parent().find('.woocommerce-loop-product__title').text(); //Название самой радиодетали
-            let lsId = $(this).parent().parent().parent().parent().find('.item--id').text(); //ID самой радиодетали
-            let lsCount = $(this).parent().parent().parent().find('.inputCount').val(); //Кол-во радиодеталей
-            let lsTypeOf = $(this).parent().parent().parent().find('.itemcount').text(); //Мера исчисления (1 - кг, 2 - штуки)
-            let lsRowSum = $(this).parent().parent().parent().parent().find('.row-total span').text(); //Сумма
+            let lsType = jQuery('.category--header h1').text(); //Название категории
+            let lsName = jQuery(this).parent().parent().parent().find('.woocommerce-loop-product__title').text(); //Название самой радиодетали
+            let lsId = jQuery(this).parent().parent().parent().parent().find('.item--id').text(); //ID самой радиодетали
+            let lsCount = jQuery(this).parent().parent().parent().find('.inputCount').val(); //Кол-во радиодеталей
+            let lsTypeOf = jQuery(this).parent().parent().parent().find('.itemcount').text(); //Мера исчисления (1 - кг, 2 - штуки)
+            let lsRowSum = jQuery(this).parent().parent().parent().parent().find('.row-total span').text(); //Сумма
 
             if (curSS) {
                 temp = [lsId, lsType, lsName, lsCount, lsTypeOf, lsRowSum];
@@ -919,13 +919,14 @@ jQuery(document).ready(function () {
 
                 curSS.push(temp);
                 sessionStorage.setItem('order', JSON.stringify(curSS));
-                $(".alertwindow").addClass("active").find(".textall").text("Всего деталей: " + curSS.length);
+                jQuery(".alertwindow").addClass("active").find(".textall").text("Всего деталей: " + curSS.length);
             } else {
                 temp[0] = [lsId, lsType, lsName, lsCount, lsTypeOf, lsRowSum];
                 sessionStorage.setItem('order', JSON.stringify(temp));
-                $(".alertwindow").addClass("active").find(".textall").text("Всего деталей: 1");
+                jQuery(".alertwindow").addClass("active").find(".textall").text("Всего деталей: 1");
             }
 
+            updateList();
 
             //saveToLS();
 
@@ -938,19 +939,19 @@ jQuery(document).ready(function () {
     });
 
     /*подсчет суммы для карточки товара*/
-    $(".catalog--products-ul .product").on('input', '.inputCount', function () {
-        let itemCol = $(this).val();
-        let itemPrice = $(this).parent().parent().parent().parent().parent().find(".price_value").text();
-        $(this).parent().parent().parent().parent().find(".row-total span").text(itemPrice * itemCol);
+    jQuery(".catalog--products-ul .product").on('input', '.inputCount', function () {
+        let itemCol = jQuery(this).val();
+        let itemPrice = jQuery(this).parent().parent().parent().parent().parent().find(".price_value").text();
+        jQuery(this).parent().parent().parent().parent().find(".row-total span").text(itemPrice * itemCol);
     });
 
 
-    $(".alertwindow .btn-close").click(function () {
-        $(".alertwindow").removeClass("active");
+    jQuery(".alertwindow .btn-close").click(function () {
+        jQuery(".alertwindow").removeClass("active");
     });
 
     //Заполняем скрытые поля в форме ContactForm7 данными из локального хранилища
-    jQuery('.send-btn-wrapper a.btn-black').on('click', function (e) {
+    jQuery('.send-btn-wrapper a.btn-black, .block_list a.btn-black').on('click', function (e) {
         e.preventDefault();
         let lsArr = JSON.parse(sessionStorage.getItem('order'));
         if (lsArr) {
@@ -959,6 +960,7 @@ jQuery(document).ready(function () {
                 type: 'inline',
                 opts: {
                     beforeShow: function (instance, current) {
+                        let totalSum = 0;
                         jQuery("#restable table").html("");
                         jQuery("#z1").val("");
                         jQuery("#z2").val("");
@@ -972,9 +974,9 @@ jQuery(document).ready(function () {
                             jQuery("#z4").val(jQuery("#z4").val() + "_" + arr[4]);
                             jQuery("#z5").val(jQuery("#z5").val() + "_" + arr[5]);
                             jQuery("#restable table").append("<tr><td class='col1'>" + arr[1] + "</td><td class='col2'>" + arr[2] + "</td><td class='col3'>" + arr[3] + " <span class='izm'>" + arr[4] + "</span></td><td class='col4'><span class='sum'>Сумма </span>" + arr[5] + " ₽</td></tr>");
+                            totalSum += Math.round(arr[5]);
                         }
-                        jQuery("#restable table").append("<tr><td colspan='4' class='totalsum'><div><span class='yellow-rounded'>Итого</span> " + jQuery('#els-total-price-num span').text() + " ₽</div></td></tr>");
-
+                        jQuery("#restable table").append("<tr><td colspan='4' class='totalsum'><div><span class='yellow-rounded'>Итого</span> " + totalSum + " ₽</div></td></tr>");
                     }
                 }
             });
@@ -1038,45 +1040,48 @@ jQuery(document).ready(function () {
 
     /*Прокрутка к блоку*/
 
-        jQuery('a[href^="#"]').bind('click.smoothscroll',function (e) {
-            e.preventDefault();
-            var target = this.hash,
-                $target = jQuery(target);
+    jQuery('a[href^="#"]').bind('click.smoothscroll',function (e) {
+        e.preventDefault();
+        var target = this.hash,
+            $target = jQuery(target);
 
-            if(target === "#main-page--calculator"){
-                jQuery(".calculator").addClass("yellow-glow");
-                function sayHi() {
-                    jQuery(".calculator").removeClass("yellow-glow");
-                }
-                setTimeout(sayHi, 5000);
+        if(target === "#main-page--calculator"){
+            jQuery(".calculator").addClass("yellow-glow");
+            function sayHi() {
+                jQuery(".calculator").removeClass("yellow-glow");
             }
+            setTimeout(sayHi, 5000);
+        }
 
-            jQuery('html, body').stop().animate( {
-                'scrollTop': $target.offset().top-100
-            }, 900, 'swing', function () {/*callback*/} );
-        } );
-
-        /*степпер для калькулятора*/
-        jQuery(".stepper-step").on('click', function (e) {
-            let curval = parseFloat(jQuery(this).parent().find("input").val());
-          if(e.target.classList[1] === "up"){
-                jQuery(this).parent().find("input").val(curval + 1).trigger("input");
-          } else {
-              if(curval > 1) {
-                  jQuery(this).parent().find("input").val(curval - 1).trigger("input");
-              }
-           }
-        });
+        jQuery('html, body').stop().animate( {
+            'scrollTop': $target.offset().top-100
+        }, 900, 'swing', function () {/*callback*/} );
+    });
 
 
 
+    /*степпер для калькулятора*/
+    jQuery("body").on('click', ".stepper-step", function (e) {
+      let curval = parseFloat(jQuery(this).parent().find("input").val());
+      console.log(curval);
+      if(e.target.classList[1] === "up"){
+            jQuery(this).parent().find("input").val(curval + 1).trigger("input");
+      } else {
+          if(curval > 1) {
+              jQuery(this).parent().find("input").val(curval - 1).trigger("input");
+          }
+       }
+    });
 
-     /*фильтр селекта*/
+
+
+
+    /*фильтр селекта*/
     jQuery(".els-filter .opt").on('click', function () {
        jQuery(this).parent().find(".opt").removeClass("active");
         jQuery(this).addClass("active");
         let $curElsRow = jQuery('.els-row-' + rowsCount);
-        console.log(rowsCount);
+       // console.log(rowsCount);
         if(($curElsRow.find(".el-name option:selected").attr('value')) && ($curElsRow.find(".el-name option:selected").attr('value').toString() != '9999')){
             jQuery(".el-add-row-btn").trigger('click');
         } else {
@@ -1085,7 +1090,7 @@ jQuery(document).ready(function () {
     });
 
     function CheckProjects(selectVal=null) {
-        console.log(rowsCount);
+        //console.log(rowsCount);
         let $curElsRow = jQuery('.els-row-' + rowsCount);
         let arrVals = JSON.parse(jQuery('.opt.active').attr('data-vals'));
 
@@ -1103,16 +1108,343 @@ jQuery(document).ready(function () {
 
             $curElsRow.find("select.el-type").val(selectVal).prop('selected', true).trigger('change');
         }
-    };
+    }
 
 
     /*categories popup on menu click*/
-    $(".ico-mob-catalog").on("click", function () {
-        $("#cat_popup_menu").css("display","block");
+    jQuery(".mob-catalog").on("click", function () {
+        jQuery("#cat_popup_menu").css("display","block");
+        jQuery(".popup_layout").addClass("active");
     });
 
-    $("#cat_popup_menu .close_btn").on("click", function () {
-        $("#cat_popup_menu").css("display","none");
+    jQuery("#cat_popup_menu .close_btn").on("click", function () {
+        jQuery("#cat_popup_menu").css("display","none");
+        jQuery(".popup_layout").removeClass("active");
     });
+
+    jQuery(".popup_layout").on("click", function () {
+        jQuery("#cat_popup_menu").css("display","none");
+        jQuery(".popup_layout").removeClass("active");
+    });
+
+    function updateList(){
+        let lsArr = [];
+        let totalCount = 0;
+        let totalPrice = 0;
+        if (sessionStorage.getItem('order') !== null) {
+            lsArr = JSON.parse(sessionStorage.getItem('order'));
+            for (const [i, arr] of lsArr.entries()) {
+                totalCount += 1;
+                totalPrice += Math.round(arr[5]);
+            }
+        }
+        jQuery(".list_total_count").text(totalCount);
+        jQuery(".list_total_sum").text(totalPrice);
+    }
+
+    if(jQuery(".block_list").length){
+        updateList();
+    }
+
+
+    jQuery('.block_list').portamento();
+
+
+    jQuery('.send-btn-wrapper a.btn-secondary').on('click', function (e) {
+        e.preventDefault();
+        let lsArr = JSON.parse(sessionStorage.getItem('order'));
+        if (lsArr) {
+            jQuery.fancybox.open({
+                src: '#sendMSG',
+                type: 'inline',
+                opts: {
+                    beforeShow: function (instance, current) {
+
+                    }
+                }
+            });
+        } else {
+            return false;
+        }
+        /*
+    */
+    });
+
 
 });
+
+
+/*
+main.js
+main.css
+imgs/
+archive-product
+woocommerce/
+header.php
+footer.php
+*/
+
+
+/*!
+ *
+ * Portamento  v1.1.1 - 2011-09-02
+ * http://simianstudios.com/portamento
+ *
+ * Copyright 2011 Kris Noble except where noted.
+ *
+ * Dual-licensed under the GPLv3 and Apache 2.0 licenses:
+ * http://www.gnu.org/licenses/gpl-3.0.html
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ */
+/**
+ *
+ * Creates a sliding panel that respects the boundaries of
+ * a given wrapper, and also has sensible behaviour if the
+ * viewport is too small to display the whole panel.
+ *
+ * Full documentation at http://simianstudios.com/portamento
+ *
+ * ----
+ *
+ * Uses the viewportOffset plugin by Ben Alman aka Cowboy:
+ * http://benalman.com/projects/jquery-misc-plugins/#viewportoffset
+ *
+ * Uses a portion of CFT by Juriy Zaytsev aka Kangax:
+ * http://kangax.github.com/cft/#IS_POSITION_FIXED_SUPPORTED
+ *
+ * Uses code by Matthew Eernisse:
+ * http://www.fleegix.org/articles/2006-05-30-getting-the-scrollbar-width-in-pixels
+ *
+ * Builds on work by Remy Sharp:
+ * http://jqueryfordesigners.com/fixed-floating-elements/
+ *
+ */
+(function($){
+
+    $.fn.portamento = function(options) {
+
+        // we'll use the window and document objects a lot, so
+        // saving them as variables now saves a lot of function calls
+        var thisWindow = $(window);
+        var thisDocument = $(document);
+
+        /**
+         * NOTE by Kris - included here so as to avoid namespace clashes.
+         *
+         * jQuery viewportOffset - v0.3 - 2/3/2010
+         * http://benalman.com/projects/jquery-misc-plugins/
+         *
+         * Copyright (c) 2010 "Cowboy" Ben Alman
+         * Dual licensed under the MIT and GPL licenses.
+         * http://benalman.com/about/license/
+         */
+        $.fn.viewportOffset = function() {
+            var win = $(window);
+            var offset = $(this).offset();
+
+            return {
+                left: offset.left - win.scrollLeft(),
+                top: offset.top - win.scrollTop()
+            };
+        };
+
+        /**
+         *
+         * A test to see if position:fixed is supported.
+         * Taken from CFT by Kangax - http://kangax.github.com/cft/#IS_POSITION_FIXED_SUPPORTED
+         * Included here so as to avoid namespace clashes.
+         *
+         */
+        function positionFixedSupported () {
+            var container = document.body;
+            if (document.createElement && container && container.appendChild && container.removeChild) {
+                var el = document.createElement("div");
+                if (!el.getBoundingClientRect) {
+                    return null;
+                }
+                el.innerHTML = "x";
+                el.style.cssText = "position:fixed;top:100px;";
+                container.appendChild(el);
+                var originalHeight = container.style.height, originalScrollTop = container.scrollTop;
+                container.style.height = "3000px";
+                container.scrollTop = 500;
+                var elementTop = el.getBoundingClientRect().top;
+                container.style.height = originalHeight;
+                var isSupported = elementTop === 100;
+                container.removeChild(el);
+                container.scrollTop = originalScrollTop;
+                return isSupported;
+            }
+            return null;
+        }
+
+        /**
+         *
+         * Get the scrollbar width by Matthew Eernisse.
+         * http://www.fleegix.org/articles/2006-05-30-getting-the-scrollbar-width-in-pixels
+         * Included here so as to avoid namespace clashes.
+         *
+         */
+        function getScrollerWidth() {
+            var scr = null;
+            var inn = null;
+            var wNoScroll = 0;
+            var wScroll = 0;
+
+            // Outer scrolling div
+            scr = document.createElement('div');
+            scr.style.position = 'absolute';
+            scr.style.top = '-1000px';
+            scr.style.left = '-1000px';
+            scr.style.width = '100px';
+            scr.style.height = '50px';
+            // Start with no scrollbar
+            scr.style.overflow = 'hidden';
+
+            // Inner content div
+            inn = document.createElement('div');
+            inn.style.width = '100%';
+            inn.style.height = '200px';
+
+            // Put the inner div in the scrolling div
+            scr.appendChild(inn);
+            // Append the scrolling div to the doc
+            document.body.appendChild(scr);
+
+            // Width of the inner div sans scrollbar
+            wNoScroll = inn.offsetWidth;
+            // Add the scrollbar
+            scr.style.overflow = 'auto';
+            // Width of the inner div width scrollbar
+            wScroll = inn.offsetWidth;
+
+            // Remove the scrolling div from the doc
+            document.body.removeChild(document.body.lastChild);
+
+            // Pixel width of the scroller
+            return (wNoScroll - wScroll);
+        }
+
+        // ---------------------------------------------------------------------------------------------------
+
+        // get the definitive options
+        var opts = $.extend({}, $.fn.portamento.defaults, options);
+
+        // setup the vars accordingly
+        var panel = this;
+        var wrapper = opts.wrapper;
+        var gap = opts.gap;
+        var disableWorkaround = opts.disableWorkaround;
+        var fullyCapableBrowser = positionFixedSupported();
+
+        if(panel.length != 1) {
+            // die gracefully if the user has tried to pass multiple elements
+            // (multiple element support is on the TODO list!) or no elements...
+            return this;
+        }
+
+        if(!fullyCapableBrowser && disableWorkaround) {
+            // just stop here, as the dev doesn't want to use the workaround
+            return this;
+        }
+
+        // wrap the floating panel in a div, then set a sensible min-height and width
+        panel.wrap('<div id="portamento_container" />');
+        var float_container = $('#portamento_container');
+        float_container.css({
+            'min-height': panel.outerHeight(),
+            'width': panel.outerWidth()
+        });
+
+        // calculate the upper scrolling boundary
+        var panelOffset = panel.offset().top;
+        var panelMargin = parseFloat(panel.css('marginTop').replace(/auto/, 0));
+        var realPanelOffset = panelOffset - panelMargin;
+        var topScrollBoundary = realPanelOffset - gap;
+
+        // a couple of numbers to account for margins and padding on the relevant elements
+        var wrapperPaddingFix = parseFloat(wrapper.css('paddingTop').replace(/auto/, 0));
+        var containerMarginFix = parseFloat(float_container.css('marginTop').replace(/auto/, 0));
+
+        // do some work to fix IE misreporting the document width
+        var ieFix = 0;
+
+        var isMSIE = /*@cc_on!@*/0;
+
+        if (isMSIE) {
+            ieFix = getScrollerWidth() + 4;
+        }
+
+        // ---------------------------------------------------------------------------------------------------
+
+        thisWindow.bind("scroll.portamento", function () {
+
+            if(thisWindow.height() > panel.outerHeight() && thisWindow.width() >= (thisDocument.width() - ieFix)) { // don't scroll if the window isn't big enough
+
+                var y = thisDocument.scrollTop(); // current scroll position of the document
+
+                if (y >= (topScrollBoundary)) { // if we're at or past the upper scrolling boundary
+                    if((panel.innerHeight() - wrapper.viewportOffset().top) - wrapperPaddingFix + gap >= wrapper.height()) { // if we're at or past the bottom scrolling boundary
+                        if(panel.hasClass('fixed') || thisWindow.height() >= panel.outerHeight()) { // check that there's work to do
+                            panel.removeClass('fixed');
+                            panel.css('top', (wrapper.height() - panel.innerHeight()) + 'px');
+                        }
+                    } else { // if we're somewhere in the middle
+                        panel.addClass('fixed');
+
+                        if(fullyCapableBrowser) { // supports position:fixed
+                            panel.css('top', gap + 'px'); // to keep the gap
+                        } else {
+                            panel.clearQueue();
+                            panel.css('position', 'absolute').animate({top: (0 - float_container.viewportOffset().top + gap)});
+                        }
+                    }
+                } else {
+                    // if we're above the top scroll boundary
+                    panel.removeClass('fixed');
+                    panel.css('top', '0'); // remove any added gap
+                }
+            } else {
+                panel.removeClass('fixed');
+            }
+        });
+
+        // ---------------------------------------------------------------------------------------------------
+
+        thisWindow.bind("resize.portamento", function () {
+            // stop users getting undesirable behaviour if they resize the window too small
+            if(thisWindow.height() <= panel.outerHeight() || thisWindow.width() < thisDocument.width()) {
+                if(panel.hasClass('fixed')) {
+                    panel.removeClass('fixed');
+                    panel.css('top', '0');
+                }
+            } else {
+                thisWindow.trigger('scroll.portamento'); // trigger the scroll event to place the panel correctly
+            }
+        });
+
+        // ---------------------------------------------------------------------------------------------------
+
+        thisWindow.bind("orientationchange.portamento", function () {
+            // if device orientation changes, trigger the resize event
+            thisWindow.trigger('resize.portamento');
+        });
+
+        // ---------------------------------------------------------------------------------------------------
+
+        // trigger the scroll event immediately so that the panel is positioned correctly if the page loads anywhere other than the top.
+        thisWindow.trigger('scroll.portamento');
+
+        // return this to maintain chainability
+        return this;
+    };
+
+    // set some sensible defaults
+    $.fn.portamento.defaults = {
+        'wrapper'				: $('body'), // the element that will act as the sliding panel's boundaries
+        'gap'					: 10, // the gap (in pixels) left between the top of the viewport and the top of the panel
+        'disableWorkaround' 	: false // option to disable the workaround for not-quite capable browsers
+    };
+
+})(jQuery);
