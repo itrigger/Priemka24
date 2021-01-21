@@ -8,6 +8,10 @@
   }
 }
 
+.left_menu_w{
+  position: relative; display: flex; flex-direction: column; justify-content: stretch;
+}
+
 .left_menu{
   padding: 32px 37px 24px;
   background: #F0CB07;
@@ -44,6 +48,7 @@
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 265px;
+  position: absolute;
   .heading{
     font-size: 17px;
     line-height: 22px;
@@ -93,6 +98,7 @@
     background: #FAFAFA;
     border: 1px solid #EEEEEE;
     border-radius: 6px;
+    position: relative;
     .img_wrapper{
       background: #FFFFFF;
       border-radius: 6px;
@@ -199,3 +205,103 @@
  }
 }
 
+
+.alertwindow{
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 6px;
+
+  opacity: 0;
+  transition: all 0.3s;
+  font-size: 15px;
+  pointer-events: none;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.active{
+    opacity: 1;
+    transition: all 0.3s;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  .text{
+    font-size: 24px;
+    color: #000;
+    position: relative;
+  }
+  .wrapper{
+    background: $yellow;
+    border-radius: 6px;
+    color: #fff;
+    position: relative;
+    box-shadow: 0 1px 10px rgba(#000,0.2);
+    width: 300px;
+    height: 60px;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:before{
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: url("../img/pattern.png") 0 0 repeat;
+      opacity: 0.9;
+      z-index: 0;
+    }
+  }
+
+}
+
+#portamento_wrapper{
+  padding-bottom: 50px;
+  position: relative;
+  height: 100%;
+}
+
+.prem{
+  position: relative;
+  .head{
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 800;
+    padding-left: 75px;
+    margin-bottom: 18px;
+  }
+  .desc{
+    font-size: 16px;
+    line-height: 20px;
+    color: #555;
+  }
+  &.prem-1{
+    &:before{
+      @include pseudo("ico_prem_1.svg", 63, 64, 0, -8);
+    }
+  }
+  &.prem-2{
+    &:before{
+      @include pseudo("ico_prem_2.svg", 36, 37, 0, 8);
+    }
+  }
+  &.prem-3{
+    &:before{
+      @include pseudo("ico_prem_3.svg", 64, 68, 0, -9);
+    }
+  }
+  &.prem-4{
+    &:before{
+      @include pseudo("ico_prem_4.svg", 58, 57, 0, -6);
+    }
+  }
+}

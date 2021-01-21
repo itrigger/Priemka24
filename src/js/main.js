@@ -77,9 +77,7 @@ jQuery(document).ready(function () {
         }
     });
 
-    jQuery(".btn-buy-wrapper").click(function () {
-        jQuery("textarea#mytext").text("Здравствуйте! Я хочу продать деталь: " + jQuery(this).parent().parent().find(".woocommerce-loop-product__title").text());
-    });
+
 
 
     var GOLD_DISCOUNT = 0.6;
@@ -921,13 +919,15 @@ jQuery(document).ready(function () {
 
                 curSS.push(temp);
                 sessionStorage.setItem('order', JSON.stringify(curSS));
-                jQuery(".alertwindow").addClass("active").find(".textall").text("Всего деталей: " + curSS.length);
+                jQuery(this).parent().parent().parent().parent().find(".alertwindow").addClass("active");
             } else {
                 temp[0] = [lsId, lsType, lsName, lsCount, lsTypeOf, lsRowSum];
                 sessionStorage.setItem('order', JSON.stringify(temp));
-                jQuery(".alertwindow").addClass("active").find(".textall").text("Всего деталей: 1");
+                jQuery(this).parent().parent().parent().parent().find(".alertwindow").addClass("active");
             }
-
+            setTimeout(function () {
+                jQuery(".alertwindow").removeClass("active");
+            }, 2000);
             updateList();
 
             //saveToLS();
@@ -938,6 +938,10 @@ jQuery(document).ready(function () {
 
             //$(this).addClass("added").text("Добавлено!");
        /* }*/
+    });
+
+    jQuery("body").on("click", ".alertwindow", function () {
+        jQuery(this).removeClass("active");
     });
 
     /*подсчет суммы для карточки товара*/
@@ -991,12 +995,12 @@ jQuery(document).ready(function () {
     jQuery(".card a").on('click touch', function () {
         let dataval = parseInt(jQuery(this).attr("data-val"));
         let arr_lom = JSON.parse(jQuery('.opt1').attr('data-vals'));
-        let arr_pribor =  JSON.parse(jQuery('.opt2').attr('data-vals'));
+        //let arr_pribor =  JSON.parse(jQuery('.opt2').attr('data-vals'));
+        let $curElsRow = jQuery('.els-row-' + rowsCount);
 
         if (arr_lom.indexOf(dataval) !== -1) {
             jQuery(".opt").removeClass("active");
             jQuery(".opt1").addClass("active");
-            let $curElsRow = jQuery('.els-row-' + rowsCount);
 
             if(($curElsRow.find(".el-name option:selected").attr('value')) && ($curElsRow.find(".el-name option:selected").attr('value').toString() != '9999')){
                 addNewRow(dataval);
@@ -1011,7 +1015,6 @@ jQuery(document).ready(function () {
         } else {
             jQuery(".opt").removeClass("active");
             jQuery(".opt2").addClass("active");
-            let $curElsRow = jQuery('.els-row-' + rowsCount);
 
             if(($curElsRow.find(".el-name option:selected").attr('value')) && ($curElsRow.find(".el-name option:selected").attr('value').toString() != '9999')){
                 addNewRow(dataval);
@@ -1107,7 +1110,6 @@ jQuery(document).ready(function () {
         $curElsRow.find("select.el-type").val(lastId).trigger('change');
         console.log(selectVal);
         if(selectVal){
-
             $curElsRow.find("select.el-type").val(selectVal).prop('selected', true).trigger('change');
         }
     }
@@ -1145,20 +1147,21 @@ jQuery(document).ready(function () {
     }
 
     if(jQuery(".block_list").length){
-
         jQuery(".left_menu ul li").each(function () {
             if(jQuery(this).find("a").attr("href") === window.location.pathname){
                 jQuery(this).addClass("active");
             }
         });
-        console.log(window.location);
-
         updateList();
     }
 
 
-    jQuery('.block_list').portamento();
+    jQuery('.block_list').portamento({wrapper: jQuery('#portamento_wrapper')});
 
+
+    jQuery(".sellnow").click(function () {
+        jQuery("textarea#mytext").text("Здравствуйте! Я хочу продать: " + jQuery(this).parent().parent().parent().find(".woocommerce-loop-product__title").text());
+    });
 
     jQuery('.send-btn-wrapper a.btn-secondary').on('click', function (e) {
         e.preventDefault();
@@ -1180,6 +1183,11 @@ jQuery(document).ready(function () {
     */
     });
 
+
+/*
+* Todo
+* Если в калькулятор добавить сначала приборы, то потом он глючит и не выводит категорию для приборов
+* */
 
 
 
