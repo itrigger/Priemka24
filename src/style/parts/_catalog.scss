@@ -42,13 +42,51 @@
   }
 }
 
+.block_list_w{
+  position: absolute;
+}
+
+.all_cats{
+  height: 0;
+  opacity: 0;
+  transition: 0.1s all;
+  margin-bottom: 0;
+  &.active{
+    height: auto;
+    opacity: 1;
+    margin-bottom: 25px;
+    transition: 0.1s all;
+  }
+}
+
+.all_cats .btn{
+  width: 100%;
+  justify-content: center;
+  padding-left: 0;
+  border: 2px solid #000;
+}
+
+.all_cats .ico-mob-catalog:before {
+  content: "";
+  display: block;
+  position: absolute;
+  background-size: contain;
+  background-position: 0 0;
+  background-image: url(../img/ico-mob-price.svg);
+  background-repeat: no-repeat;
+  width: 19px;
+  height: 24px;
+  top: 10px;
+  left: auto;
+  right: 60px;
+}
+
 .block_list{
   padding: 16px 16px 0;
   background: #F0CB07;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 265px;
-  position: absolute;
   .heading{
     font-size: 17px;
     line-height: 22px;
@@ -305,3 +343,90 @@
     }
   }
 }
+
+@media (max-width: 660px){
+  .breadcrumbs {
+    margin-top: 0;
+  }
+  .category--header h1 {
+    font-size: 24px;
+    line-height: 34px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .catalog--products-ul .product{
+    padding: 7px;
+    margin-bottom: 7px;
+    cursor: pointer;
+  }
+  .catalog--products-ul .product .img_wrapper{
+    width: 92px;
+    min-width: 92px;
+    height: 73px;
+    max-height: 73px;
+    margin-right: 17px;
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+  .woocommerce-loop-product__title{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+  }
+  .price_w .price{
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .product--input-w,
+  .catalog--products-ul .product .btns-wrapper,
+  .price_w .title
+  {
+    display: none;
+  }
+  .prem .desc{
+    padding: 0 10px;
+  }
+
+  .catalog--products-ul .product.active{
+    background: $yellow;
+    flex-direction: column;
+    padding: 17px;
+    .img_wrapper{
+      width: 100%;
+      min-width: 92px;
+      height: 189px;
+      max-height: 189px;
+      margin: 0 0 15px;
+    }
+    .woocommerce-loop-product__title{
+      font-size: 24·px;
+      line-height: 26px;
+      font-weight: 400;
+      margin-bottom: 15px;
+    }
+    .product--input-w,
+    .btns-wrapper,
+    .price_w .title
+    {
+      display: inherit;
+    }
+    .price_w .title{
+      width: auto;
+      font-size: 12px;
+      line-height: 14px;
+      margin-right: 10px;
+      .itemcount{
+        margin-left: 4px;
+      }
+    }
+    .price_w .price{
+      width: auto;
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+
+}
+@media (max-width: 1180px){}

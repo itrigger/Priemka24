@@ -239,6 +239,11 @@ jQuery(document).ready(function () {
         })
     }
 
+    jQuery(".catalog--products-ul .product").click(function () {
+        jQuery(".catalog--products-ul .product").removeClass("active");
+        jQuery(this).addClass("active");
+    });
+
 
 
     if (jQuery(".print--ul").length > 0) {
@@ -1156,7 +1161,9 @@ jQuery(document).ready(function () {
     }
 
 
-    jQuery('.block_list').portamento({wrapper: jQuery('#portamento_wrapper')});
+
+
+    jQuery('.block_list_w').portamento({wrapper: jQuery('#portamento_wrapper')});
 
 
     jQuery(".sellnow").click(function () {
@@ -1409,11 +1416,12 @@ footer.php
                     if((panel.innerHeight() - wrapper.viewportOffset().top) - wrapperPaddingFix + gap >= wrapper.height()) { // if we're at or past the bottom scrolling boundary
                         if(panel.hasClass('fixed') || thisWindow.height() >= panel.outerHeight()) { // check that there's work to do
                             panel.removeClass('fixed');
+                            jQuery(".all_cats").removeClass("active");
                             panel.css('top', (wrapper.height() - panel.innerHeight()) + 'px');
                         }
                     } else { // if we're somewhere in the middle
                         panel.addClass('fixed');
-
+                        jQuery(".all_cats").addClass("active");
                         if(fullyCapableBrowser) { // supports position:fixed
                             panel.css('top', gap + 'px'); // to keep the gap
                         } else {
@@ -1424,10 +1432,12 @@ footer.php
                 } else {
                     // if we're above the top scroll boundary
                     panel.removeClass('fixed');
+                    jQuery(".all_cats").removeClass("active");
                     panel.css('top', '0'); // remove any added gap
                 }
             } else {
                 panel.removeClass('fixed');
+                jQuery(".all_cats").removeClass("active");
             }
         });
 
@@ -1438,6 +1448,7 @@ footer.php
             if(thisWindow.height() <= panel.outerHeight() || thisWindow.width() < thisDocument.width()) {
                 if(panel.hasClass('fixed')) {
                     panel.removeClass('fixed');
+                    jQuery(".all_cats").removeClass("active");
                     panel.css('top', '0');
                 }
             } else {
