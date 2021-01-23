@@ -65,7 +65,7 @@ jQuery(document).ready(function () {
 
     jQuery('.map_bubble').on('click', '.close', function () {
         jQuery(this).parent().removeClass("open").find(".wrapper").html("");
-    })
+    });
 
     jQuery('.btn-burger').on('click', function () {
         if (jQuery(this).hasClass('active')) {
@@ -77,13 +77,20 @@ jQuery(document).ready(function () {
         }
     });
 
+    jQuery(".tabs li").on("click", function () {
+        let liIndex = jQuery(this).index();
+        jQuery(this).parent().find("li").removeClass("active");
+        jQuery(this).addClass("active");
+        jQuery(this).parent().parent().parent().find(".tab_content").removeClass("active");
+        jQuery(this).parent().parent().parent().find(".tab_content").eq(liIndex).addClass("active");
+    });
 
 
 
-    var GOLD_DISCOUNT = 0.6;
-    var SILVER_DISCOUNT = 0.7;
-    var PLATINUM_DISCOUNT = 0.7;
-    var PALLADIUM_DISCOUNT = 0.7;
+    let GOLD_DISCOUNT = 0.6;
+    let SILVER_DISCOUNT = 0.7;
+    let PLATINUM_DISCOUNT = 0.7;
+    let PALLADIUM_DISCOUNT = 0.7;
 
     let categoriesAPI = {}; // объект где храним список категорий
     let categoriesName = [];
@@ -1160,7 +1167,13 @@ jQuery(document).ready(function () {
         updateList();
     }
 
-
+    if(jQuery("#cat_popup_menu").length){
+        jQuery("#cat_popup_menu li").each(function () {
+            if(jQuery(this).find("a").attr("href") === window.location.pathname){
+                jQuery(this).addClass("active");
+            }
+        });
+    }
 
 
     jQuery('.block_list_w').portamento({wrapper: jQuery('#portamento_wrapper')});

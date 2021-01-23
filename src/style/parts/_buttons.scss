@@ -76,6 +76,15 @@
     @include pseudo("ico-download-w.svg", 20, 20, 12, 13);
   }
 }
+span.btn-ico-download-white{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  &:before {
+    @include pseudo("ico-download-w.svg", 20, 20, 0, 0);
+  }
+}
+
 .btn-ico-money{
   position: relative;
   padding-left: 55px;

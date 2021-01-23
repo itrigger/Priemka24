@@ -190,6 +190,26 @@ label{
   }
 }
 
+.fancy_close{
+  background: #fff;
+  border-radius: 50%;
+  opacity: 1;
+  padding: 10px;
+  right: -22px;
+  top: -22px;
+  position: absolute;
+  width: 44px;
+  height: 44px;
+}
+.fancybox-slide--image .fancy_close{
+  right: 12px;
+  top: 12px;
+  z-index: 10;
+  svg{
+    pointer-events: none;
+  }
+}
+
 @media (max-width: 990px) {
 
   #restable td {
