@@ -83,7 +83,9 @@ jQuery(document).ready(function () {
         jQuery(this).addClass("active");
         jQuery(this).parent().parent().parent().find(".tab_content").removeClass("active");
         jQuery(this).parent().parent().parent().find(".tab_content").eq(liIndex).addClass("active");
+        sessionStorage.setItem('tabs',liIndex);
     });
+
 
 
 
@@ -1207,11 +1209,15 @@ jQuery(document).ready(function () {
     });
 
 
-/*
-* Todo
-* Если в калькулятор добавить сначала приборы, то потом он глючит и не выводит категорию для приборов
-* */
-
+    if (sessionStorage.getItem('tabs') !== null) {
+        let curTab = sessionStorage.getItem('tabs');
+        jQuery('.mobile_tabs').find('li').removeClass("active");
+        jQuery('.mobile_tabs').find('li').eq(curTab).addClass("active");
+        jQuery(".tab_content").removeClass("active");
+        jQuery(".tab_content").eq(curTab).addClass("active");
+    } else {
+        sessionStorage.setItem('tabs','0');
+    }
 
 
 

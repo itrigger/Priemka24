@@ -423,6 +423,24 @@ header.header{
 
 
 @media (max-width: 1180px) {
+
+  body:not(.home)
+  {
+    padding-top: 140px;
+  }
+  body.home{
+    #mobile_header2{
+      display: none;
+    }
+  }
+
+  body.page-template-print{
+    padding-top: 100px;
+    #mobile_header2{
+      display: none;
+    }
+  }
+
   #mobile_header2{
     display: flex;
   }
@@ -450,5 +468,9 @@ header.header{
   }
   .top-nav, .top-contacts, .top-phone{
     display: none;
+  }
+
+  #cat_popup_menu ul{
+    column-gap: 10px;
   }
 }
