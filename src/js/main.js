@@ -362,7 +362,10 @@ jQuery(document).ready(function () {
                         $dropdown.append(jQuery("<option disabled hidden selected value='9999'></option>").text("Выберите тип элемента"));
                         $dropdown.prop('disabled', false);
                         //fillChildSelect(1);
-                        CheckProjects();
+
+                        //console.log("check");
+                        //CheckProjects();
+
                         isLoading(0);
                     });
 
@@ -1095,7 +1098,7 @@ jQuery(document).ready(function () {
 
     /*фильтр селекта*/
     jQuery(".els-filter .opt").on('click', function () {
-       jQuery(this).parent().find(".opt").removeClass("active");
+        jQuery(this).parent().find(".opt").removeClass("active");
         jQuery(this).addClass("active");
         let $curElsRow = jQuery('.els-row-' + rowsCount);
        // console.log(rowsCount);
@@ -1120,7 +1123,7 @@ jQuery(document).ready(function () {
             }
         });
         $curElsRow.find("select.el-type").val(lastId).trigger('change');
-        console.log(selectVal);
+        //console.log(selectVal);
         if(selectVal){
             $curElsRow.find("select.el-type").val(selectVal).prop('selected', true).trigger('change');
         }

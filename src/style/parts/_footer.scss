@@ -172,7 +172,14 @@ footer.footer{
     flex-direction: column;
   }
   footer.footer{
-    margin-top: -150px;
-    padding-top: 180px;
+    padding-top: 20px;
+    margin-top: 34px;
+  }
+  body.home{
+    footer.footer{
+
+      margin-top: -150px;
+      padding-top: 180px;
+    }
   }
 }
