@@ -232,3 +232,13 @@ span.btn-ico-download-white{
     @include pseudo("ico_mob_btn_catalog2.svg", 53, 31, null, 7, 13);
   }
 }
+
+
+.close_btn{
+  background: url("../img/close-o.svg") 0 0 no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  cursor: pointer;
+  display: block;
+}

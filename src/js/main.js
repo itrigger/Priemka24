@@ -28,7 +28,7 @@ jQuery(document).ready(function () {
                 spaceBetween: 20
             }
         },
-        loop: false,
+        loop: true,
 
         // Navigation arrows
         navigation: {
@@ -53,7 +53,7 @@ jQuery(document).ready(function () {
             }
         },
         autoplay: {
-            delay: 5000,
+            delay: 7000,
         },
         // Navigation arrows
         pagination: {
@@ -248,9 +248,24 @@ jQuery(document).ready(function () {
         })
     }
 
-    jQuery(".catalog--products-ul .product").click(function () {
-        jQuery(".catalog--products-ul .product").removeClass("active");
-        jQuery(this).addClass("active");
+    jQuery(".catalog--products-ul .product").click(function (e) {
+        if(e.target.classList.value == "close_text" || e.target.classList.value == "close_flex" || e.target.classList.value == "close_btn") {
+            jQuery(".catalog--products-ul .product").removeClass("active");
+            e.preventDefault();
+        } else {
+            jQuery(".catalog--products-ul .product").removeClass("active");
+            if(jQuery(window).width()<=660) {
+                jQuery(this).addClass("active");
+                jQuery('html, body').stop().animate({
+                    'scrollTop': jQuery(this).offset().top - 120
+                }, 200, 'swing', function () {/*callback*/
+                });
+            }
+        }
+    });
+
+    jQuery(".catalog--products-ul .close_flex").click(function (e) {
+
     });
 
 
@@ -1138,7 +1153,7 @@ jQuery(document).ready(function () {
         jQuery(".popup_layout").addClass("active");
     });
 
-    jQuery("#cat_popup_menu .close_btn").on("click", function () {
+    jQuery("#cat_popup_menu .close_flex").on("click", function () {
         jQuery("#cat_popup_menu").css("display","none");
         jQuery(".popup_layout").removeClass("active");
     });
