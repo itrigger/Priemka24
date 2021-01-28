@@ -195,26 +195,54 @@ jQuery(document).ready(function () {
 
     /* Add fancybox to product img */
     if (jQuery(".catalog--products").length > 0) {
-        jQuery(".catalog--products-ul .product img.attachment-woocommerce_thumbnail").on('click', function () {
-            jQuery.fancybox.open({
-                src: jQuery(this).attr('src'),
-                type: 'image',
-                toolbar: false,
-                beforeShow: function (instance, current) {
-                    jQuery(".fancybox-toolbar").css("display", "none");
-                },
-                afterShow: function (instance, current) {
-                    jQuery(".fancybox-content").prepend("<div class='fancy_close'><svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1\" viewBox=\"0 0 24 24\"><path d=\"M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z\"></path></svg></div>");
-                    jQuery(".fancy_close").on('click', function () {
-                        instance.close();
-                    })
-                },
-                clickContent: 'close',
-                clickSlide: "close",
-                buttons: ['close'],
-                touch: false
-                //fancybox-content
-            });
+        jQuery(".catalog--products-ul .product img.attachment-woocommerce_thumbnail").on('click', function (e) {
+            if(jQuery(window).width() <= 600){
+                if(e.target.offsetParent.classList.contains('active')){
+                    jQuery.fancybox.open({
+                        src: jQuery(this).attr('src'),
+                        type: 'image',
+                        toolbar: false,
+                        beforeShow: function (instance, current) {
+                            jQuery(".fancybox-toolbar").css("display", "none");
+                        },
+                        afterShow: function (instance, current) {
+                            jQuery(".fancybox-content").prepend("<div class='fancy_close'><svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1\" viewBox=\"0 0 24 24\"><path d=\"M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z\"></path></svg></div>");
+                            jQuery(".fancy_close").on('click', function () {
+                                instance.close();
+                            })
+                        },
+                        clickContent: 'close',
+                        clickSlide: "close",
+                        buttons: ['close'],
+                        touch: false
+                        //fancybox-content
+                    });
+                }
+            } else {
+                jQuery.fancybox.open({
+                    src: jQuery(this).attr('src'),
+                    type: 'image',
+                    toolbar: false,
+                    beforeShow: function (instance, current) {
+                        jQuery(".fancybox-toolbar").css("display", "none");
+                    },
+                    afterShow: function (instance, current) {
+                        jQuery(".fancybox-content").prepend("<div class='fancy_close'><svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1\" viewBox=\"0 0 24 24\"><path d=\"M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z\"></path></svg></div>");
+                        jQuery(".fancy_close").on('click', function () {
+                            instance.close();
+                        })
+                    },
+                    clickContent: 'close',
+                    clickSlide: "close",
+                    buttons: ['close'],
+                    touch: false
+                    //fancybox-content
+                });
+            }
+
+
+
+
         });
 
         //Высчитываем цену товара, данные для цены выводим с помощью php и ACF
@@ -391,6 +419,8 @@ jQuery(document).ready(function () {
                     if (sessionStorage.getItem('order') !== null) {
                         lsArr = JSON.parse(sessionStorage.getItem('order'));
                         getFromLs(lsArr).then(r => console.log('Data loaded from local storage!'));
+                    } else {
+                        CheckProjects();
                     }
 
 
@@ -600,6 +630,10 @@ jQuery(document).ready(function () {
         let items = JSON.parse(sessionStorage.getItem('order'));
         const filteredItems = items.slice(0, rowID - 1).concat(items.slice(rowID, items.length))
         sessionStorage.setItem('order', JSON.stringify(filteredItems));
+    }
+
+    const removeAllFromLs = function(){
+        sessionStorage.removeItem('order');
     }
 
 
@@ -916,6 +950,58 @@ jQuery(document).ready(function () {
             jQuery('.els-row:last-child').prepend('<div class="els-del"></div>');
         }
         rowsCount = rowsCount - 1;
+
+        getTotalPrice(); // пересчет итоговой цены
+    });
+
+
+    // Очищение калькулятора
+    $parentEl.on('click', '.els-clear', function () {
+        delete_notify();
+        rowsCount = 1;
+        let visibleRowsCount = jQuery('.els-body .els-row').length;
+
+        jQuery('.els-body .els-row').remove();
+
+        jQuery(".els-body").append('<div class="els-row els-row-' + rowsCount + ' collapsed" data-id="' + rowsCount + '">\n' +
+            '        <div class="els-del"></div><div class="el-wrap ew1 sel-wrap">\n' +
+            '          <select class="el-type" name="el-type" disabled>\n' +
+            '            <option disabled hidden selected value="">Выберите тип элемента</option>\n' +
+            '          </select>\n' +
+            '        </div>\n' +
+            '        <div class="el-wrap ew2 sel-wrap">\n' +
+            '          <select class="el-name" name="el-name" disabled>\n' +
+            '            <option disabled hidden selected value="">Наименование</option>\n' +
+            '          </select>\n' +
+            '        </div>\n' +
+            '        <div class="el-wrap ew3 labeled-input">\n' +
+            '          <label>Кол.\n' +
+            '            <div class="inputCountWrap"><input  type="number" min="1" value="1" class="inputCount"/><span class="stepper-step up"></span>\n' +
+            '<span class="stepper-step down"></span>\n' +
+            '</div> <span class="typeOfCount">кг.</span>\n' +
+            '          </label>\n' +
+            '        </div>\n' +
+            '        <div class="el-wrap ew4 labeled-input input-dark to-right">\n' +
+            '          <label>Сумма</label>\n' +
+            '          <div class="row-total"><span>0</span> ₽</div>\n' +
+            '        </div>\n' +
+            '      </div>');
+
+        // заполнение родительского селекта уже полученными данными о категориях
+        let currentDD = jQuery('.els-row-' + rowsCount).find('.el-type');
+        isLoading(1);
+        jQuery.each(categoriesAPI, function () {
+            currentDD.append(jQuery("<option />").val(this.id).text(this.name));
+        });
+        currentDD.prop('disabled', false);
+        isLoading(0);
+        setTimeout(function () {
+            jQuery('.els-row-' + rowsCount).removeClass("collapsed");
+        }, 100);
+
+        removeAllFromLs();
+
+        CheckProjects();
 
         getTotalPrice(); // пересчет итоговой цены
     });

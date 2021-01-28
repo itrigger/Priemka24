@@ -134,6 +134,7 @@
 
 .fixed {
   position: fixed;
+  transform: translate3d(0,0,0);
 }
 
 /*items*/
@@ -338,9 +339,17 @@
     color: #555;
   }
   &.prem-1{
-    &:before{
-      @include pseudo("ico_prem_1.svg", 63, 64, 0, -8);
+    a{
+      position: relative;
+      display: block;
+      &:before{
+        @include pseudo("ico_prem_1.svg", 63, 64, 0, -8);
+      }
+      &:focus, &:active{
+        outline: none;
+      }
     }
+
   }
   &.prem-2{
     &:before{

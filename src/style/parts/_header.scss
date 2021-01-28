@@ -227,6 +227,20 @@ header.header{
     padding: 25px;
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    position: relative;
+    &:before{
+      content: "";
+      display: block;
+      width: 100%;
+      height: 56px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url(../img/pattern.png) 0 top repeat-x;
+      opacity: .7;
+      z-index: 0;
+    }
   }
   ul{
     padding: 0;
@@ -345,6 +359,9 @@ header.header{
 .close_card{
   display: none;
   width: 100%;
+  .close_flex{
+    margin-top: 15px;
+  }
 }
 
 .catalog--products-ul .product.active{
@@ -355,7 +372,7 @@ header.header{
 
 .close_flex{
   display: flex;
-  margin-top: 15px;
+  margin-top: 35px;
   justify-content: flex-end;
   align-items: center;
 }
@@ -364,6 +381,8 @@ header.header{
   margin-right: 5px;
   cursor: pointer;
 }
+
+
 
 
 @media (max-width: 1180px) {
