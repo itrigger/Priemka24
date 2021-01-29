@@ -462,6 +462,12 @@
   }
 }
 @media (max-width: 660px){
+  .fancybox-content{
+    padding: 20px;
+  }
+  .fancybox-content .heading{
+    padding-right: 30px;
+  }
   .breadcrumbs {
     margin-top: 0;
   }
@@ -598,6 +604,14 @@
     }
     .text{
       color: #fff;
+    }
+  }
+  .els-header{
+    flex-direction: column;
+    .els-clear{
+      position: absolute;
+      right: 0;
+      top: 10px;
     }
   }
 }

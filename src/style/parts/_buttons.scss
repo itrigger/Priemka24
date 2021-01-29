@@ -242,3 +242,20 @@ span.btn-ico-download-white{
   cursor: pointer;
   display: block;
 }
+
+.btn span.btn-ico-wt{
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  &:before{
+    top: 0;
+    left: 0;
+  }
+}
+
+.fancybox-button{
+  width: 64px;
+  height: 64px;
+}
+

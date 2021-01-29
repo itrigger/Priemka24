@@ -436,9 +436,14 @@ header.header{
   #cat_popup_menu ul{
     column-gap: 10px;
   }
+  #cat_popup_menu{
+    top: 0;
+  }
 }
 
 @media (max-width: 660px) {
+
+
 
   #mobile_header2{
     display: flex;

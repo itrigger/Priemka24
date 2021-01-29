@@ -281,13 +281,15 @@ jQuery(document).ready(function () {
             jQuery(".catalog--products-ul .product").removeClass("active");
             e.preventDefault();
         } else {
-            jQuery(".catalog--products-ul .product").removeClass("active");
-            if(jQuery(window).width()<=660) {
-                jQuery(this).addClass("active");
-                jQuery('html, body').stop().animate({
-                    'scrollTop': jQuery(this).offset().top - 120
-                }, 200, 'swing', function () {/*callback*/
-                });
+            if(!(jQuery(this).hasClass("active"))){
+                jQuery(".catalog--products-ul .product").removeClass("active");
+                if(jQuery(window).width()<=660) {
+                    jQuery(this).addClass("active");
+                    jQuery('html, body').stop().animate({
+                        'scrollTop': jQuery(this).offset().top - 120
+                    }, 200, 'swing', function () {/*callback*/
+                    });
+                }
             }
         }
     });
@@ -406,22 +408,20 @@ jQuery(document).ready(function () {
                         });
                         $dropdown.append(jQuery("<option disabled hidden selected value='9999'></option>").text("Выберите тип элемента"));
                         $dropdown.prop('disabled', false);
-                        //fillChildSelect(1);
 
-                        //console.log("check");
                         //CheckProjects();
-
+                        let lsArr = [];
+                        if (sessionStorage.getItem('order') !== null) {
+                            lsArr = JSON.parse(sessionStorage.getItem('order'));
+                            getFromLs(lsArr).then(r => console.log('Data loaded from local storage!'));
+                        } else {
+                            CheckProjects();
+                        }
                         isLoading(0);
                     });
 
                     /*Fill fields from localstorage*/
-                    let lsArr = [];
-                    if (sessionStorage.getItem('order') !== null) {
-                        lsArr = JSON.parse(sessionStorage.getItem('order'));
-                        getFromLs(lsArr).then(r => console.log('Data loaded from local storage!'));
-                    } else {
-                        CheckProjects();
-                    }
+
 
 
                 }
@@ -608,6 +608,8 @@ jQuery(document).ready(function () {
         let temp = [];
         let rowsLength = jQuery(".els-row").length;
 
+        let lsRowSum;
+
         for (let i = 1; i <= rowsLength; i++) {
             let $row = jQuery('.els-row-' + i);
             let lsType = $row.find('.el-type option:selected').text(); //Название категории
@@ -615,14 +617,14 @@ jQuery(document).ready(function () {
             let lsId = $row.find('.el-name option:selected').attr('value').toString(); //ID самой радиодетали
             let lsCount = $row.find('.inputCount').val().toString(); //Кол-во радиодеталей
             let lsTypeOf = $row.find('.typeOfCount').text(); //Мера исчисления (1 - кг, 2 - штуки)
-            let lsRowSum = $row.find('.row-total span').text(); //Сумма как (кол-во * меру исчесления)
+            lsRowSum = $row.find('.row-total span').text(); //Сумма как (кол-во * меру исчесления)
             if (lsId !== '9999') {
                 temp[i - 1] = [lsId, lsType, lsName, lsCount, lsTypeOf, lsRowSum];
             }
         }
-
-        sessionStorage.setItem('order', JSON.stringify(temp)); //превращаем все данные в строку и сохраняем в локальное хранилище
-
+        if(lsRowSum>0) {
+            sessionStorage.setItem('order', JSON.stringify(temp)); //превращаем все данные в строку и сохраняем в локальное хранилище
+        }
     };
 
     //Удаление строки из локального хранилища
@@ -1029,7 +1031,6 @@ jQuery(document).ready(function () {
 
                 curSS.forEach((element, index) => {
                     if(element[0] === lsId){
-                        console.log(element);
                         curSS.splice(index,1);
 
                     }
@@ -1186,7 +1187,7 @@ jQuery(document).ready(function () {
     /*степпер для калькулятора*/
     jQuery("body").on('click', ".stepper-step", function (e) {
       let curval = parseFloat(jQuery(this).parent().find("input").val());
-      console.log(curval);
+
       if(e.target.classList[1] === "up"){
             jQuery(this).parent().find("input").val(curval + 1).trigger("input");
       } else {
@@ -1213,13 +1214,14 @@ jQuery(document).ready(function () {
     });
 
     function CheckProjects(selectVal=null) {
-        //console.log(rowsCount);
+
         let $curElsRow = jQuery('.els-row-' + rowsCount);
         let arrVals = JSON.parse(jQuery('.opt.active').attr('data-vals'));
 
         $curElsRow.find("select.el-type").empty();
         let lastId = 0;
         jQuery.each(categoriesAPI, function (index) {
+
             if (jQuery.inArray(categoriesAPI[index].id, arrVals) > -1) { //If current project ID is in array of projects
                 $curElsRow.find("select.el-type").append(jQuery("<option />").val(categoriesAPI[index].id).text(categoriesAPI[index].name));
                 lastId = categoriesAPI[index].id;
