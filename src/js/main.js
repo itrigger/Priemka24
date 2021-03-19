@@ -92,7 +92,7 @@ jQuery(document).ready(function () {
     let GOLD_DISCOUNT = 0.6;
     let SILVER_DISCOUNT = 0.7;
     let PLATINUM_DISCOUNT = 0.7;
-    let PALLADIUM_DISCOUNT = 0.7;
+    let PALLADIUM_DISCOUNT = 0.6;
 
     let categoriesAPI = {}; // объект где храним список категорий
     let categoriesName = [];
